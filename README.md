@@ -1,2 +1,2 @@
-# seja-veloz
-Jogo de palavras
+# Jogo de palavras
+ um jogo de palavras aleatorias

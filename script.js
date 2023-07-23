@@ -96,16 +96,9 @@ function resetGame() {
 function showCorrectWords() {
   const wordPopup = document.getElementById("wordPopup");
   const wordList = document.getElementById("wordList");
-
-  let formattedList = "";
-  for (let i = 0; i < correctWords.length; i++) {
-    formattedList += `${i + 1}. ${correctWords[i]}<br>`;
-  }
-
-  wordList.innerHTML = formattedList;
+  wordList.innerHTML = "" + correctWords.join("<br>");
   wordPopup.style.display = "block";
 }
-
 
 function hidePopup() {
   const wordPopup = document.getElementById("wordPopup");

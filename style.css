@@ -98,7 +98,7 @@ input:focus {
   position: relative;
   margin: 20px auto;
   background-color: #fff;
-  border: 1px solid #007bff;
+  border: 2px solid #007bff;
   padding: 20px;
   z-index: 9999;
   border-radius: 5px;

@@ -96,7 +96,7 @@ function resetGame() {
 function showCorrectWords() {
   const wordPopup = document.getElementById("wordPopup");
   const wordList = document.getElementById("wordList");
-  wordList.innerHTML = "Palavras corretas:<br>" + correctWords.join("<br>");
+  wordList.innerHTML = "" + correctWords.join("<br>");
   wordPopup.style.display = "block";
 }
 

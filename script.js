@@ -2,10 +2,13 @@ const wordsFile = "words.json"; // Substitua pelo caminho correto
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
 
-let timeLeft = 30; // Tempo total de jogo em segundos
 let timeBonus = 3; // Tempo em segundos ganho por palavra correta
 const animationDuration = 500; // Tempo de duração da animação em milissegundos (0,5 segundos)
 
+let timeout; // Variable to store the setTimeout ID
+let timer; // Variável para controlar o temporizador
+let isPlaying = false; // Variável para verificar se o jogo está em andamento
+let score = 0; // Pontuação do jogador
 
 // Função para fazer a requisição HTTP e obter os dados do arquivo JSON
 async function fetchWords() {
@@ -20,9 +23,7 @@ async function fetchWords() {
 
 fetchWords();
 
-let timer; // Variável para controlar o temporizador
-let isPlaying = false; // Variável para verificar se o jogo está em andamento
-let score = 0; // Pontuação do jogador
+
 
 function getRandomWord() {
   const randomIndex = Math.floor(Math.random() * words.length);
@@ -96,9 +97,16 @@ function resetGame() {
 function showCorrectWords() {
   const wordPopup = document.getElementById("wordPopup");
   const wordList = document.getElementById("wordList");
-  wordList.innerHTML = "" + correctWords.join("<br>");
+
+  let formattedList = "";
+  for (let i = 0; i < correctWords.length; i++) {
+    formattedList += `${i + 1}. ${correctWords[i]}<br>`;
+  }
+
+  wordList.innerHTML = formattedList;
   wordPopup.style.display = "block";
 }
+
 
 function hidePopup() {
   const wordPopup = document.getElementById("wordPopup");
@@ -154,8 +162,9 @@ function checkWord() {
 
       if (isPlaying) {
         const timerDisplay = document.getElementById("timerDisplay");
-        let timeLeft = parseInt(timerDisplay.textContent);
-        timeLeft += timeBonus;
+        const currentTime = parseInt(timerDisplay.textContent);
+        const newTime = currentTime + timeBonus;
+        timeLeft = Math.min(newTime, 30); // Limit the time to a maximum of 30 seconds
         timerDisplay.textContent = timeLeft;
 
         // Exibe o "+3" na tela por um breve período de tempo
@@ -174,4 +183,3 @@ function checkWord() {
 }
 
 document.getElementById("userInput").addEventListener("input", checkWord);
-

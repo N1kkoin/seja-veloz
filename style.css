@@ -116,9 +116,8 @@ input:focus {
   /* Estilos para o elemento "+2" */
   .bonus {
     position: fixed;
-    top: 50%;
+    top: 280px;
     left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 24px;
     font-weight: bold;
     color: green;

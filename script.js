@@ -106,8 +106,10 @@ function hidePopup() {
 
 // Event listener para reiniciar o jogo ao recarregar a página
 window.addEventListener("unload", () => {
-    resetGame();
-  });
+  // Antes de reiniciar o jogo, limpe o event listener do botão "Iniciar Jogo"
+  document.getElementById("startButton").removeEventListener("click", startGame);
+  resetGame();
+});
 
 function checkWord() {
   if (isPlaying) {

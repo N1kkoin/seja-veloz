@@ -88,6 +88,8 @@ function resetGame() {
   document.getElementById("showWordsButton").style.display = "none";
   document.getElementById("wordDisplay").textContent = "Será que você estudou as palavras da língua portuguesa?";
   displayWord(); // Adiciona esta linha para mostrar a primeira palavra quando o jogo é reiniciado.
+
+  hidePopup();
 }
 
 function showCorrectWords() {
@@ -102,6 +104,10 @@ function hidePopup() {
   wordPopup.style.display = "none";
 }
 
+// Event listener para reiniciar o jogo ao recarregar a página
+window.addEventListener("afterunload", () => {
+    resetGame();
+  });
 
 function checkWord() {
   if (isPlaying) {
@@ -145,9 +151,19 @@ function checkWord() {
         let timeLeft = parseInt(timerDisplay.textContent);
         timeLeft += timeBonus;
         timerDisplay.textContent = timeLeft;
+
+        // Exibe o "+2" na tela por um breve período de tempo
+        const bonusDisplay = document.createElement("div");
+        bonusDisplay.textContent = "+2";
+        bonusDisplay.className = "bonus";
+        document.body.appendChild(bonusDisplay);
+        setTimeout(() => {
+          document.body.removeChild(bonusDisplay);
+        }, 1000); // Remove o elemento "+2" após 1 segundo
       }
     }
   }
 }
 
 document.getElementById("userInput").addEventListener("input", checkWord);
+

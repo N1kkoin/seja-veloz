@@ -114,20 +114,21 @@ input:focus {
     display: block;
   }
   /* Estilos para o elemento "+2" */
-.bonus {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-  font-weight: bold;
-  color: green;
-  z-index: 9999;
-  animation: fade-in-out 1s ease-out;
-}
-
-@keyframes fade-in-out {
-  100% { opacity: 0; } /* No início (0%), a opacidade é 0, tornando o elemento invisível */
-  80% { opacity: 1; } /* Aos 50% da animação, a opacidade é 1, tornando o elemento visível */
-  0% { opacity: 0; } /* No final (100%), a opacidade é 0 novamente, tornando o elemento invisível */
-}
+  .bonus {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: green;
+    z-index: 9999;
+    animation: fade-in-and-move-up 1s ease-out;
+    animation-fill-mode: forwards; /* Mantém o estado final da animação */
+  }
+  
+  @keyframes fade-in-and-move-up {
+    0% { opacity: 0; transform: translate(-50%, -50%); }
+    50% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -70%); } /* Move 20% para cima (ajuste o valor conforme necessário) */
+  }

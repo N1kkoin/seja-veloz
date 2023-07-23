@@ -105,7 +105,7 @@ function hidePopup() {
 }
 
 // Event listener para reiniciar o jogo ao recarregar a página
-window.addEventListener("afterunload", () => {
+window.addEventListener("unload", () => {
     resetGame();
   });
 

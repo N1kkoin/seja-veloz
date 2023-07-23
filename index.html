@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Palavras Aleatórias</title>
-    <link rel="stylesheet" href="style.css".>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Jogo de Palavras Aleatórias</h1>
-    <p id="wordDisplay">Aqui será exibida uma palavra aleatória...</p>
+    <h1>Seja rápido!</h1>
+    <p id="wordDisplay">Será que você estudou as palavras da lingua portuguesa?</p>
     <input type="text" id="userInput" placeholder="Digite a palavra..." disabled>
-    <p>Tempo Restante: <span id="timerDisplay">30</span> segundos</p>
+    <p>Tempo Restante: <span id="timerDisplay">30</span> s</p>
     <p>Pontuação: <span id="score">0</span></p>
     <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
     <div id="wordPopup">
         <button id="closeButton" onclick="hidePopup()">Fechar</button>
         <div id="wordList"></div>
     </div>
-      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Mostrar Palavras Corretas</button>
+      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
 
     <script src="script.js"></script>
 </body>

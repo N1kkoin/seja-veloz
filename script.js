@@ -3,6 +3,9 @@ const wordsFile = "words.json"; // Substitua pelo caminho correto
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
 
+let timeLeft = 30; // Tempo total de jogo em segundos
+let timeBonus = 2; // Tempo em segundos ganho por palavra correta
+
 
 // Função para fazer a requisição HTTP e obter os dados do arquivo JSON
 async function fetchWords() {
@@ -32,35 +35,63 @@ wordDisplay.textContent = getRandomWord();
 }
 
 function startGame() {
-if (!isPlaying) {
-isPlaying = true;
-score = 0;
-document.getElementById("score").textContent = score;
-document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
-displayWord();
-timer = setInterval(updateTimer, 1000);
-setTimeout(endGame, 30000);
+    resetGame();
+    if (!isPlaying) {
+        isPlaying = true;
+        score = 0;
+        document.getElementById("score").textContent = score;
+        document.getElementById("startButton").style.display = "none"; // Esconde o botão "Iniciar Jogo"
+
+        // Limpar o conteúdo da caixa de texto de entrada
+        document.getElementById("userInput").value = "";
+
+        // Exibe a primeira palavra na caixa de texto
+        displayWord();
+
+        document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
+
+        timeLeft = 30; // Reinicia o tempo restante para o valor original
+        timer = setInterval(updateTimer, 1000);
+        setTimeout(endGame, timeLeft * 1000); // Usamos a variável timeLeft para o tempo de término
+    }
 }
-}
+
+
+
 
 function updateTimer() {
-const timerDisplay = document.getElementById("timerDisplay");
-let timeLeft = parseInt(timerDisplay.textContent);
-timeLeft--;
+    const timerDisplay = document.getElementById("timerDisplay");
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+    } else {
+        endGame();
+    }
+}
 
-if (timeLeft >= 0) {
-timerDisplay.textContent = timeLeft;
-}
-}
 
 function endGame() {
 clearInterval(timer);
 isPlaying = false;
 document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
 document.getElementById("startButton").textContent = "Jogar Novamente";
+document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
 
 // Exibe o botão "Mostrar Palavras Corretas"
 document.getElementById("showWordsButton").style.display = "block";
+}
+
+function resetGame() {
+    clearInterval(timer);
+    isPlaying = false;
+    score = 0;
+    correctWords = [];
+    document.getElementById("score").textContent = score;
+    document.getElementById("userInput").disabled = true;
+    document.getElementById("startButton").textContent = "Iniciar Jogo";
+    document.getElementById("showWordsButton").style.display = "none";
+    document.getElementById("wordDisplay").textContent = "Será que você estudou as palavras da língua portuguesa?";
+    displayWord(); // Adiciona esta linha para mostrar a primeira palavra quando o jogo é reiniciado.
 }
 
 function showCorrectWords() {

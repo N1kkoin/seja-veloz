@@ -1,5 +1,5 @@
 
-const wordsFile = "/code/words.json"; // Substitua pelo caminho correto
+const wordsFile = "/codigo/words.json"; // Substitua pelo caminho correto
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
 

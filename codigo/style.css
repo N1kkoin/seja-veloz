@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+#wordDisplay {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#userInput {
+    font-size: 18px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 10px;
+}
+
+#timerDisplay {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#score {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff; /* Cor azul para destacar a pontuação */
+}
+
+#startButton {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+input:focus {
+    outline: none; /* Remover a borda de foco do campo de entrada */
+}
+
+/* Estilos para o botão "Mostrar Palavras Corretas" */
+#showWordsButton {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #45a049; /* Cor de fundo mais escura ao passar o mouse */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+  }
+  
+  #showWordsButton:hover {
+    background-color: #007bff;
+  }
+  
+  /* Estilos para o "popup" */
+#wordPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+  }
+  
+  #closeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ccc;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  #wordList {
+    margin-top: 10px;
+  }
+  
+  /* Estilo para cada palavra na lista */
+  #wordList span {
+    display: block;
+  }
+  

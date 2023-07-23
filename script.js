@@ -3,7 +3,8 @@ let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
 
 let timeLeft = 30; // Tempo total de jogo em segundos
-let timeBonus = 2; // Tempo em segundos ganho por palavra correta
+let timeBonus = 3; // Tempo em segundos ganho por palavra correta
+const animationDuration = 500; // Tempo de duração da animação em milissegundos (0,5 segundos)
 
 
 // Função para fazer a requisição HTTP e obter os dados do arquivo JSON
@@ -111,8 +112,11 @@ window.addEventListener("unload", () => {
   resetGame();
 });
 
+let isCheckingWord = false; // Variável para evitar chamadas repetidas da função checkWord()
+
 function checkWord() {
-  if (isPlaying) {
+  if (isPlaying && !isCheckingWord) {
+    isCheckingWord = true;
     const userInput = document.getElementById("userInput");
     const currentWord = document.getElementById("wordDisplay").textContent.trim().toLowerCase();
     const typedWord = userInput.value.trim().toLowerCase();
@@ -154,16 +158,18 @@ function checkWord() {
         timeLeft += timeBonus;
         timerDisplay.textContent = timeLeft;
 
-        // Exibe o "+2" na tela por um breve período de tempo
+        // Exibe o "+3" na tela por um breve período de tempo
         const bonusDisplay = document.createElement("div");
-        bonusDisplay.textContent = "+2";
+        bonusDisplay.textContent = "+3";
         bonusDisplay.className = "bonus";
         document.body.appendChild(bonusDisplay);
         setTimeout(() => {
           document.body.removeChild(bonusDisplay);
-        }, 1000); // Remove o elemento "+2" após 1 segundo
+        }, animationDuration);
       }
     }
+    // Marca a verificação como concluída para permitir futuras chamadas da função
+    isCheckingWord = false;
   }
 }
 

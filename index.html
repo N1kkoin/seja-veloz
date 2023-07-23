@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Palavras Aleatórias</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
     <h1>Seja rápido!</h1>
-    <p id="wordDisplay">Será que você estudou as palavras da lingua portuguesa?</p>
+    <p id="wordDisplay">Será que você conhece lingua portuguesa?</p>
     <input type="text" id="userInput" placeholder="Digite a palavra..." disabled>
-    <p>Tempo Restante: <span id="timerDisplay">30</span> s</p>
-    <p>Pontuação: <span id="score">0</span></p>
+    
+    <div class="segundoseponto">
+        <p><i class="fa fa-clock-o"></i> <span id="timerDisplay">30</span> s</p>
+        <p><i class="fa fa-check"></i> <span id="score">0</span></p>
+    </div>
+
     <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
+    <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+
     <div id="wordPopup">
-        <button id="closeButton" onclick="hidePopup()">Fechar</button>
+        <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>
         <div id="wordList"></div>
     </div>
-      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
 
     <script src="script.js"></script>
 </body>

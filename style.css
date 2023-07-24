@@ -132,7 +132,7 @@ input:focus {
   z-index: 9999;
   border-radius: 5px;
   width: 255px;
-  max-height: 250px;
+  max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
   }

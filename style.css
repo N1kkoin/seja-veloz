@@ -31,7 +31,7 @@ img{
 }
 
 .blocotexto{
-  background-color: #d2dbf15b;
+  background-color: #d2dbf13a;
   max-width: 300px;
   padding: 10px;
   margin: 0 auto;
@@ -91,7 +91,7 @@ footer {
   color: #21335881; 
 }
 #userInput:disabled{
-  background-color: #26427e34;
+  background-color: #26427e21;
 }
 
 p {

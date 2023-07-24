@@ -35,7 +35,7 @@ function displayWord() {
 }
 
 function initializeGame() {
-  timeLeft = 30; // Definir o tempo inicial como 30 segundos
+  timeLeft = 15; // Definir o tempo inicial como 30 segundos
 }
 
 function startGame() {

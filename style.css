@@ -3,11 +3,34 @@
 body {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: white;
     margin: 0;
     padding: 0;
     overflow-y: hidden;
 
+}
+img{
+  max-width: 300px;
+  margin: 20px auto;
+  margin-top: 80px;
+}
+
+.blocotexto{
+  background-color: #f0f0f0;
+  max-width: 300px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.botoes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaçamento entre os botões */
+  max-width: 300px;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 h1 {
@@ -60,12 +83,15 @@ p {
 #startButton {
     font-size: 18px;
     padding: 10px 20px;
-    margin-top: 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+    min-width: 100px; /* Largura mínima do botão */
+    max-width: 300px; /* Largura máxima do botão */
+    margin: 0 auto; /* Centralizar horizontalmente no contêiner */
 }
 
 #startButton:hover {
@@ -85,7 +111,10 @@ input:focus {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 20px auto;
+    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+    min-width: 100px; /* Largura mínima do botão */
+    max-width: 300px; /* Largura máxima do botão */
+    margin: 0 auto; /* Centralizar horizontalmente no contêiner */
   }
   
   #showWordsButton:hover {

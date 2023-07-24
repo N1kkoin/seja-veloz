@@ -11,17 +11,20 @@
   </head>
 
   <body>
-    <h1>Seja Veloz!</h1>
-    <p id="wordDisplay">Será que você conhece a lingua portuguesa?</p>
-    <input type="text" id="userInput" autocomplete="off" placeholder="Digite a palavra..." disabled>
+    <img src="logo_seja_veloz.svg"></img>
+    <div class="blocotexto">
+        <p id="wordDisplay">Será que você conhece a lingua portuguesa?</p>
+        <input type="text" id="userInput" autocomplete="off" placeholder="Digite a palavra..." disabled>
 
-    <div class="segundoseponto">
-      <p><i class="fa fa-clock-o"></i> <span id="timerDisplay">30</span> s</p>
-      <p><i class="fa fa-check"></i> <span id="score">0</span></p>
+        <div class="segundoseponto">
+        <p><i class="fa fa-clock-o"></i> <span id="timerDisplay">30</span> s</p>
+        <p><i class="fa fa-check"></i> <span id="score">0</span></p>
+        </div>
     </div>
-
-    <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
-    <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+    <div class="botoes">
+        <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
+        <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+    </div>
 
     <div id="wordPopup">
       <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>
@@ -29,7 +32,7 @@
     </div>
 
     <script src="script.js"></script>
-    
+
   </body>
 
 </html>

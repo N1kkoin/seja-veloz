@@ -108,15 +108,26 @@ function resetGame() {
 function showCorrectWords() {
   const wordPopup = document.getElementById("wordPopup");
   const wordList = document.getElementById("wordList");
+  const closeButton = document.getElementById("closeButton"); // Adicionamos esta linha
 
-  let formattedList = "";
-  for (let i = 0; i < correctWords.length; i++) {
-    formattedList += `${i + 1}. ${correctWords[i]}<br>`;
+  if (wordPopup.style.display === "block") {
+      // Se o pop-up já estiver aberto, fechamos ele
+      wordPopup.style.display = "none";
+      closeButton.style.display = "none"; // Escondemos o botão de fechar junto com o pop-up
+  } else {
+      // Se o pop-up estiver fechado, exibimos as palavras corretas
+      let formattedList = "";
+      for (let i = 0; i < correctWords.length; i++) {
+          formattedList += `${i + 1}. ${correctWords[i]}<br>`;
+      }
+
+      wordList.innerHTML = formattedList;
+      wordPopup.style.display = "block";
+      closeButton.style.display = "inline-block"; // Exibimos o botão de fechar quando abrimos o pop-up
   }
-
-  wordList.innerHTML = formattedList;
-  wordPopup.style.display = "block";
 }
+
+
 
 function hidePopup() {
   const wordPopup = document.getElementById("wordPopup");

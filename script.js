@@ -1,25 +1,20 @@
-let words = ["Amor", "Flor", "Pato", "Bola", "Vela", "Pão", "Barco", "Mesa", "Cama", "Livro",
-  "Sapo", "Rato", "Dedo", "Céu", "Leite", "Peixe", "Ovo", "Rio", "Cão", "Rede", "Fogo", "Tempo", "Rua",
-  "Chave", "Cor", "Sal", "Pele", "Papel", "Amigo", "Lobo", "Gato", "Pássaro", "Chão", "Nuvem", "Prato",
-  "Teto", "Lápis", "Pente", "Lixo", "Cinto", "Vaso", "Poço", "Jogo", "Copo", "Pino", "Dedal", "Solto",
-  "Pingo", "Pomo", "Tomo", "Favo", "Foro", "Filo", "Poro", "Dono", "Foto", "Gado", "Mito", "Tolo", "Lote",
-  "Rito", "Selo", "Bico", "Liso", "Pelo", "Peso", "Nexo", "Riso", "Logo", "Seno", "Naco", "Porco", "Fato",
-  "Coco", "Cego", "Sino", "Frio", "Cedo", "Paco", "Coxa", "Útil", "Feio", "Fila", "Mula", "Pula", "Falta",
-  "Seta", "Andar", "Feliz", "Casa", "Gato", "Felicidade", "Árvore", "Computador", "Dança", "Piano", "Alegria",
-  "Amizade", "Vida", "Estrela", "Chá", "Coração", "Beijo", "Floresta", "Lua", "Melodia", "Relógio", "Sorriso",
-  "Serenidade", "Amanhecer", "Oceano", "Luz", "Montanha", "Palavra", "Carinho", "Arco-íris", "Esperança",
-  "Liberdade", "Pintura", "Viagem", "Chuva", "Terra", "Jardim", "Poesia", "Praia", "Girassol", "Inverno",
-  "Outono", "Primavera", "Verão", "Simplicidade", "Criatividade", "Borboleta", "Doce", "Criança", "Sonho",
-  "Café", "Ventania", "Aventura", "Estrada", "Chocolate", "Vento", "Melancia", "Conquista", "Tesouro",
-  "Conhecimento", "Silêncio", "Silvestre", "Vitoria", "Amável", "Pirâmide", "Oásis", "Deserto", "Brilhante",
-  "Encanto", "Tranquilidade", "Névoa", "Cobertor", "Maravilha", "Magia", "Caminho", "Castelo", "Enigma", "Aroma",
-  "Armadilha", "Travessia", "Mariposa", "Vitral", "Esplendor", "Cavaleiro", "Bambu", "Descoberta", "Deslumbrante",
-  "Avião", "Nuance", "Cachoeira", "Feitiço", "Poção", "Sussurro", "Divertido", "Resplandecer", "Eclético", "Utopia", "Serenata", "Miragem", "Mirante", "Pandora", "Hemisfério", "Fênix", "Galáxia", "Mistério", "Miraculoso", "Melancolia", "Resiliente", "Vitória", "Agridoce", "Quimera", "Suspiro", "Alvorecer", "Fascínio", "Melodioso", "Viandante", "Aconchegante", "Serendipidade", "Solilóquio", "Estonteante", "Efêmero", "Ampulheta", "Aurora", "Ziguezaguear", "Zoantrofínio", "Xexumbório", "Wumbolário", "Vidraçúla", "Ultracrássico", "Tropeltrão", "Squimbolês", "Reculaxante", "Qüinquilharia", "Plopodério", "Ôsculoquio", "Nímbora", "Muxoxênico", "Lulumbático", "Jabiróquio", "Ictiótrico", "Hifemogólico", "Grufrústico", "Flestrônio", "Extrabílico", "Drogogênio", "Crufendário", "Blimbórico", "Zugrezúlio", "Xacrifúrgico", "Wolbústico", "Vendagráfio", "Ultraquético", "Trombexino", "Squafélico", "Recluvisco", "Qüinquenera", "Plinkóide", "Ôsculogra", "Nugrântico", "Muxarbóreo", "Jabirômetro", "Ictiópode", "Hifemúndio", "Grufrângulo", "Flestibilo", "Extraplônio", "Drogolário", "Crufendente", "Blimbólere", "Zugrexento", "Xacrifolão", "Wolbuvício", "Vendaglântico", "Ultrafrásio", "Trombetrano", "Squadestrino", "Reclugívoro", "Qüinquemerâneo", "Plinkologista", "Ôsculopedra", "Nugrântula", "Muxarbético", "Jabirômbulo", "Ictiócria", "Hifemolengo", "Grufrânfero", "Flestiderme", "Drogolício", "Crufendeiro", "Blimbópsia", "Zugrexívoro", "Xacrifoscópico", "Wolbuvento", "Vendaglífico", "Ultrafrásico", "Trombetrântico", "Squadestrúsculo", "Reclugramático", "Qüinquemétrico", "Plinkoquínio", "Ôsculopético", "Nugrântimo", "Muxarbústico", "Jabirômolico", "Ictiótripe", "Hifemoplâncton", "Flestisângue", "Extraplunário", "Zugrexicâncer", "Xacrifólico", "Wolbuvênia", "Trombetrança", "Squadestrânfero", "Reclugramante", "Qüinquemezeno", "Ôsculopentelho", "Nugrântino", "Muxarbotânico", "Jabirômore", "Ictióscopo", "Hifemogrânulo", "Extrapluminoso", "Drogolástico", "Blimbóstomo", "Zugrexicrático", "Xacrifóssil", "Wolbucelular", "Vendaglípede", "Trombetranático", "Squadestrúnculo", "Reclugramístico", "Qüinquemeleuco", "Plinkoquincalhão", "Ôsculopereba", "Nugrântulo", "Muxarborélico", "Jabirômodonte", "Ictiótomia", "Hifemoprático", "Grufrãovário", "Flestissômico", "Extraplulento", "Drogolígneo", "Crufendíase", "Blimbometria", "Zugrexilógico", "Xacrifogante", "Wolbugástrico", "Vendaglíssono", "Trombetranóide", "Squadestrêntico", "Qüinquemegalia", "Plinkoquiongo", "Ôsculoperineu", "Muxarborrágico", "Jabirômosco", "Ictiótomo", "Hifemogroso", "Grufrãoplâncton", "Flestiplásico", "Extraplucrático", "Drogolatino", "Blimbogastro", "Azendopectina", "Zugrexossômico", "Xacrifístico", "Wolbucraniano", "Vendaglificante", "Trombetranente", "Squadestrínico", "Reclugramância", "Qüinquemelevado", "Plinkoquimbado", "Ôsculoperpendicular", "Jabirômotomo", "Drogolúcido", "Blimbolarina", "Azendoquício", "Plinkoquídeo", "Grufrãobárico", "Flestiplâncton", "Violão", "Caminhão", "Fotografia", "Hambúrguer", "Pôquer", "Ginástica", "Vôlei", "Karaokê", "Xadrez", "Culinária", "Gastronomia", "Kart", "Tênis", "Balé", "Desenho", "Artesanato", "Origami", "Scrabble", "Malabarismo", "Hipismo", "Cavalgada", "Colecionismo", "Boliche", "Surfe", "Caminhada", "Jardinagem", "Escultura", "Futebol", "Natação", "Basquete", "Tricô", "Mergulho", "Escalada", "Yoga", "Karate", "Arco e flecha", "Teatro", "Bordado", "Skate", "Jogos de tabuleiro", "Violino", "Canto", "Violino"
-]; // Array que armazenará as palavras
+const wordsFile = "words.json"; // Substitua pelo caminho correto
+let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
 
 let timeLeft; // Reinicia o tempo restante para o valor original
 
+async function fetchWords() {
+  try {
+    const response = await fetch(wordsFile);
+    const data = await response.json();
+    words = data.words;
+  } catch (error) {
+    console.error("Erro ao buscar as palavras:", error);
+  }
+}
+
+fetchWords();
 
 const timeBonus = 3; // Tempo em segundos ganho por palavra correta
 const animationDuration = 500; // Tempo de duração da animação em milissegundos (0,5 segundos)

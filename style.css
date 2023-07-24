@@ -13,6 +13,7 @@ img{
   max-width: 300px;
   margin: 20px auto;
   margin-top: 80px;
+  
 }
 
 .blocotexto{
@@ -37,6 +38,17 @@ h1 {
     color: #000;
     font-weight: 800;
     text-transform: uppercase;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: small;
+  color: #b6b6c4;
+  max-height: 100px;
+  margin-bottom: 10px;
 }
 
 .segundoseponto{

@@ -24,8 +24,13 @@
         </div>
     </div>
     <div class="botoes">
-        <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
-        <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+
+      <div id="languageSelection">
+        <button onclick="setLanguage('pt')">PT</button>
+        <button onclick="setLanguage('en-us')">EN</button>
+      </div>
+      <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
+      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
     </div>
 
     <div id="wordPopup">

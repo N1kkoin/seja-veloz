@@ -1,9 +1,3 @@
-// Import the Firebase SDK
-import firebase from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-
-// Your web app's Firebase configuration
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 const wordsFile = "palavras.json"; // Substitua pelo caminho correto
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
@@ -78,25 +72,23 @@ function updateTimer() {
 function endGame() {
   clearInterval(timer);
   isPlaying = false;
-  document.getElementById("userInput").disabled = true;
+  document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
   document.getElementById("startButton").textContent = "Jogar Novamente";
-  document.getElementById("startButton").style.display = "inline-block";
+  document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
+
+  // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
 
+  // Verifica se o jogador ainda tem tempo restante com os bônus
   const timerDisplay = document.getElementById("timerDisplay");
   const currentTime = parseInt(timerDisplay.textContent);
   const timeLeftWithBonus = currentTime + timeBonus;
 
-  if (timeLeftWithBonus > 0) {
-    const username = prompt("Fim de jogo! Digite seu nome para salvar sua pontuação:");
-
-    if (username) {
-      addScoreToScoreboard(username, score, currentTime);
-    }
+  if (timeLeftWithBonus <= 0) {
+    // O tempo acabou, encerra o jogo
+    return;
   }
 }
-
-
 
 function resetGame() {
   clearInterval(timer);
@@ -229,77 +221,3 @@ document.getElementById("userInput").addEventListener("paste", (event) => {
     userInput.style.color = "#333"; // Retorna à cor original do texto
   }, 500);
 });
-
-
-
-
-// Função para adicionar o score ao Scoreboard
-function addScoreToScoreboard(username, correctWordsCount, peakSeconds) {
-  const newScore = {
-    username: username,
-    correctWordsCount: correctWordsCount,
-    peakSeconds: peakSeconds,
-  };
-
-  // Salva o novo score no banco de dados do Firebase
-  database.ref("scores").push(newScore);
-}
-
-// Função para atualizar a exibição do Scoreboard
-function updateScoreboardDisplay(scores) {
-  const scoreboardTable = document.getElementById("scoreboard").getElementsByTagName("tbody")[0];
-  scoreboardTable.innerHTML = ""; // Limpa o conteúdo da tabela
-
-  scores.forEach((score) => {
-    const newRow = scoreboardTable.insertRow();
-
-    const nameCell = newRow.insertCell();
-    nameCell.textContent = score.username;
-
-    const wordsCell = newRow.insertCell();
-    wordsCell.textContent = score.correctWordsCount;
-
-    const peakSecondsCell = newRow.insertCell();
-    peakSecondsCell.textContent = score.peakSeconds;
-  });
-}
-
-// Event listener para carregar o Scoreboard quando a página é carregada
-window.addEventListener("load", () => {
-  
-  // Defina a variável database dentro do escopo da função
-  const database = firebase.database();
-  // Carrega os scores do banco de dados do Firebase
-  database.ref("scores").once("value", (snapshot) => {
-    const scores = snapshot.val();
-    if (scores) {
-      // Converte o objeto de scores em um array
-      const scoresArray = Object.values(scores);
-
-      // Ordena a lista em ordem decrescente com base na quantidade de palavras corretas
-      scoresArray.sort((a, b) => b.correctWordsCount - a.correctWordsCount);
-
-      // Limita a lista para conter apenas os 10 melhores scores
-      const topScores = scoresArray.slice(0, 10);
-
-      // Atualiza a exibição do scoreboard na página
-      updateScoreboardDisplay(topScores);
-    }
-  });
-});
-
-
-// Seu código JavaScript existente aqui
-
-// Função para mostrar o pop-up do Scoreboard
-function showScoreboard() {
-  const scoreboardPopup = document.getElementById("scoreboardPopup");
-  scoreboardPopup.style.display = "block";
-}
-
-// Função para esconder o pop-up do Scoreboard
-function hideScoreboard() {
-  const scoreboardPopup = document.getElementById("scoreboardPopup");
-  scoreboardPopup.style.display = "none";
-}
-

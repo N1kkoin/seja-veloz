@@ -1,20 +1,38 @@
-const wordsFile = "palavras.json"; // Substitua pelo caminho correto
+let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
+let wordsFileEN = "palavras.json"; // Substitua pelo caminho correto
+let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
+
+
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
-
 let timeLeft; // Reinicia o tempo restante para o valor original
+
+let selectedLanguage = null; // Variável para armazenar a língua selecionada
 
 async function fetchWords() {
   try {
-    const response = await fetch(wordsFile);
-    const data = await response.json();
-    words = data.words;
+      const response = await fetch(wordsFile);
+      const data = await response.json();
+      words = data.words;
   } catch (error) {
-    console.error("Erro ao buscar as palavras:", error);
+      console.error("Erro ao buscar as palavras:", error);
   }
 }
 
-fetchWords();
+async function setLanguage(language) {
+  if (language === 'pt') {
+      wordsFile = "palavras.json"; // Define o caminho para o arquivo de palavras em português
+  } else if (language === 'en-us') {
+      wordsFile = "words.json"; // Define o caminho para o arquivo de palavras em inglês
+  }
+  await fetchWords(); // Carrega o arquivo de palavras correspondente ao idioma escolhido
+  document.getElementById('startButton').disabled = false; // Habilita o botão de iniciar o jogo após a seleção de idioma
+}
+
+// Desabilita o botão de iniciar o jogo inicialmente
+document.getElementById('startButton').disabled = true;
+
+fetchWords(wordsFilePT);
 
 const timeBonus = 3; // Tempo em segundos ganho por palavra correta
 const animationDuration = 500; // Tempo de duração da animação em milissegundos (0,5 segundos)
@@ -45,7 +63,8 @@ function startGame() {
     score = 0;
     document.getElementById("score").textContent = score;
     document.getElementById("startButton").style.display = "none"; // Esconde o botão "Iniciar Jogo"
-
+    document.getElementById("languageSelection").style.display = "none";
+  
     // Limpar o conteúdo da caixa de texto de entrada
     document.getElementById("userInput").value = "";
 
@@ -75,7 +94,8 @@ function endGame() {
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
   document.getElementById("startButton").textContent = "Jogar Novamente";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
-
+  document.getElementById("languageSelection").style.display = "inline-block";
+  
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
 
@@ -126,8 +146,6 @@ function showCorrectWords() {
       closeButton.style.display = "inline-block"; // Exibimos o botão de fechar quando abrimos o pop-up
   }
 }
-
-
 
 function hidePopup() {
   const wordPopup = document.getElementById("wordPopup");

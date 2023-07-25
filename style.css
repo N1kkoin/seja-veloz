@@ -130,6 +130,10 @@ p {
     background-color: #0056b3; /* Cor mais escura ao passar o mouse */
 }
 
+#startButton:disabled{
+  background-color: #92c6ff;
+}
+
 input:focus {
     outline: none; /* Remover a borda de foco do campo de entrada */
 }
@@ -152,7 +156,7 @@ input:focus {
   }
   
   #showWordsButton:hover {
-    background-color: #007bff;
+    background-color: #237049;
   }
   
   /* Estilos para o "popup" */
@@ -205,4 +209,29 @@ input:focus {
     0% { opacity: 0; transform: translate(-50%, -50%); }
     50% { opacity: 1; transform: translate(-50%, -50%); }
     100% { opacity: 0; transform: translate(-50%, -70%); } /* Move 20% para cima (ajuste o valor conforme necessário) */
+  }
+
+
+  #languageSelection button{
+    border: 0;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    background-color: #007bff; /* Cor de fundo mais escura ao passar o mouse */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  #languageSelection button:hover{
+    background-color: #0056b3;
+  }
+
+  .hidden-word {
+    display: none;
   }

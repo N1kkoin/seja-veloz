@@ -15,7 +15,9 @@
   <body>
     <img src="logo_seja_veloz.svg"></img>
     <div class="blocotexto">
-        <p id="wordDisplay">Será que você conhece a língua portuguesa?</p>
+        <p id="wordDisplay">Será que você conhece a língua     
+          <span class="animated-word">portuguesa?</span>
+          <span class="hidden-word">inglesa?</span></p>
         <input type="text" id="userInput" autocomplete="off" placeholder="Digite a palavra..." disabled>
 
         <div class="segundoseponto">
@@ -24,8 +26,13 @@
         </div>
     </div>
     <div class="botoes">
-        <button id="startButton" onclick="startGame()">Iniciar Jogo</button>
-        <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+
+      <div id="languageSelection">
+        <button onclick="setLanguage('pt')">PT</button>
+        <button onclick="setLanguage('en-us')">EN</button>
+      </div>
+      <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
+      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
     </div>
 
     <div id="wordPopup">
@@ -33,8 +40,28 @@
       <div id="wordList"></div>
     </div>
 
-    <footer>Ver 1.1 | Seja Veloz</footer>
+    <footer>Ver 1.3 | Seja Veloz</footer>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedWord = document.querySelector(".animated-word");
+        const hiddenWord = document.querySelector(".hidden-word");
+  
+        function toggleWords() {
+          if (animatedWord.style.display === "none") {
+            animatedWord.style.display = "inline";
+            hiddenWord.style.display = "none";
+          } else {
+            animatedWord.style.display = "none";
+            hiddenWord.style.display = "inline";
+          }
+  
+          setTimeout(toggleWords, 1000); // Altera a cada 500 milissegundos (0.5s)
+        }
+  
+        toggleWords(); // Inicia o loop
+      });
+    </script>
     <script src="script.js"></script>
 
   </body>

@@ -25,8 +25,17 @@ let isPlaying = false; // Variável para verificar se o jogo está em andamento
 let score = 0; // Pontuação do jogador
 
 function getRandomWord() {
+  if (words.length === 0) {
+    return null;
+  }
+  
   const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex].toLowerCase(); // Converte a palavra para letra minúscula
+  const word = words[randomIndex].toLowerCase();
+  
+  // Remove a palavra da lista
+  words.splice(randomIndex, 1);
+
+  return word;
 }
 
 function displayWord() {
@@ -180,6 +189,13 @@ function checkWord() {
       userInput.value = ""; // Limpar o campo de entrada
       correctWords.push(currentWord); // Adiciona a palavra correta ao array
       displayWord(); // Mostrar a próxima palavra
+
+      // Checagem de vitória: se todas as palavras foram usadas
+      if (words.length === 0) {
+        endGame();
+        alert("Você venceu, parabéns!");
+        return;
+      }
 
       if (isPlaying) {
         const timerDisplay = document.getElementById("timerDisplay");

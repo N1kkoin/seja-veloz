@@ -231,3 +231,7 @@ input:focus {
   #languageSelection button:hover{
     background-color: #0056b3;
   }
+
+  .hidden-word {
+    display: none;
+  }

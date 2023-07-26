@@ -123,7 +123,7 @@ function endGame() {
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard
-    leaderboard.push({ name: playerName, score: score, time: playerTime });
+    leaderboard.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
 
     // Classifica o leaderboard em ordem decrescente de pontuação
     leaderboard.sort((a, b) => b.score - a.score);
@@ -277,6 +277,7 @@ function displayLeaderboard() {
     <div class="leaderboard-row leaderboard-header">
       <div class="leaderboard-estrela"><i class="fa fa-star"></i></div>
       <div class="leaderboard-nome">Nome</div>
+      <div class="leaderboard-linguagem">Idioma</div> <!-- New column for the language -->
       <div class="leaderboard-tempo"><i class="fa fa-clock-o"></i></div> <!-- Novo cabeçalho para a categoria de tempo -->
       <div class="leaderboard-score"><i class="fa fa-check"></i></div>
     </div>
@@ -287,6 +288,7 @@ function displayLeaderboard() {
       <div class="leaderboard-row">
         <div class="leaderboard-estrela">${i + 1}</div>
         <div class="leaderboard-nome">${leaderboard[i].name}</div>
+        <div class="leaderboard-linguagem">${leaderboard[i].language === 'pt' ? 'PT' : 'EN'}</div> <!-- Display "pt" or "en-us" based on the language -->
         <div class="leaderboard-tempo">${leaderboard[i].time} s</div> <!-- Nova coluna para exibir o tempo -->
         <div class="leaderboard-score">${leaderboard[i].score}</div>
         </div>

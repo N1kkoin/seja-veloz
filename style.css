@@ -332,7 +332,8 @@ input:focus {
 /* Styles for each column in the rows */
 .leaderboard-estrela,
 .leaderboard-nome,
-.leaderboard-score {
+.leaderboard-score,
+.leaderboard-linguagem {
   flex: 1; /* Equal width for all columns */
 }
 
@@ -360,6 +361,11 @@ input:focus {
   text-align: right;
   padding: 5px 10px;
   flex: 3; 
+}
+
+.leaderboard-linguagem{
+  text-align: right;
+  padding: 5px 10px; 
 }
 
 @media (max-width: 400px) {

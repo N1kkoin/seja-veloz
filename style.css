@@ -286,8 +286,7 @@ input:focus {
 
 /* Estilos para a tabela de classificação */
 #leaderboardList {
-  margin-top: 10px;
-  
+  margin-top: 10px; 
 }
 
 /* Estilos para as células da tabela de classificação */
@@ -317,17 +316,33 @@ input:focus {
   background-color: #a06e45;
 }
 
+
+/* Styles for each column in the rows */
+.leaderboard-estrela,
+.leaderboard-nome,
+.leaderboard-score {
+  flex: 1; /* Equal width for all columns */
+}
+
 .leaderboard-header {
   font-weight: bold;
+  width: 300px;
+
 }
 
 .leaderboard-estrela{
-  text-align: right;
-}
-.leaderboard-nome{
-  text-align: center;
-}
-.leaderboard-score{
   text-align: left;
+  padding: 5px 10px;
+}
+
+.leaderboard-nome{
+  text-align: left;
+  padding: 5px 10px;
+  flex: 6; 
+}
+
+.leaderboard-score{
+  text-align: right;
+  padding: 5px 10px;
 }
 

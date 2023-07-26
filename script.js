@@ -267,9 +267,9 @@ function displayLeaderboard() {
   // Adicionar cabeçalho da tabela
   leaderboardHTML += `
     <div class="leaderboard-row leaderboard-header">
-      <div><i class="fa fa-star"></i></div>
-      <div>Nome</div>
-      <div><i class="fa fa-check"></i></div>
+      <div class="leaderboard-estrela"><i class="fa fa-star"></i></div>
+      <div class="leaderboard-nome">Nome</div>
+      <div class="leaderboard-score"><i class="fa fa-check"></i></div>
     </div>
   `;
 

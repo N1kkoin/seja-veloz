@@ -53,6 +53,13 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 0px;
+}
+
 footer {
   width: 100%;
   margin: 20px auto;
@@ -164,7 +171,7 @@ input:focus {
   border: 2px solid #007bff;
   padding: 20px;
   padding-top: 0px;
-  z-index: 9999;
+
   border-radius: 5px;
   width: 255px;
   max-height: 350px;
@@ -244,14 +251,19 @@ input:focus {
   border: 2px solid #007bff;
   border-radius: 5px;
   z-index: 999;
+  height: 490px;
+  width: 350px;
+  overflow-y: auto;
+  
 }
 
 .closeButton {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 17px;
+  right: 15px;
   font-size: 20px;
   cursor: pointer;
+  padding: 5px 12px;
 }
 
 #leaderboardList {
@@ -305,15 +317,15 @@ input:focus {
 }
 
 .leaderboard-row:nth-child(2){
-  background-color: #f0e36f;
+  background-color: #ffe46a;
 }
 
 .leaderboard-row:nth-child(3){
-  background-color: #adadad;
+  background-color: #c2c2c2;
 }
 
 .leaderboard-row:nth-child(4){
-  background-color: #a06e45;
+  background-color: #db9e6c;
 }
 
 
@@ -326,8 +338,6 @@ input:focus {
 
 .leaderboard-header {
   font-weight: bold;
-  width: 300px;
-
 }
 
 .leaderboard-estrela{
@@ -346,3 +356,28 @@ input:focus {
   padding: 5px 10px;
 }
 
+@media (max-width: 400px) {
+  .popup {
+    width: 80%; /* Reduz a largura para ocupar 90% da largura da tela */
+  }
+  img{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  #startButton { 
+    flex: auto;
+  }
+  #showLeaderboardButton { 
+    flex: auto;
+  }
+
+  #wordPopup {
+    width: 80%;
+    
+    }
+
+    .botoes{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+}

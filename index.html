@@ -32,8 +32,23 @@
         <button onclick="setLanguage('en-us')">EN</button>
       </div>
       <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
+        <!-- Botão para abrir o popup -->
+      <button id="showLeaderboardBtn">Mostrar Leaderboard</button>
       <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
     </div>
+
+
+
+  <!-- Popup com a tabela do leaderboard -->
+  <div id="popup" style="display: none;">
+    <table id="leaderboard-table">
+      <tr>
+        <th>Posição</th>
+        <th>Nome do Jogador</th>
+        <th>Pontuação</th>
+      </tr>
+    </table>
+  </div>
 
     <div id="wordPopup">
       <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>
@@ -62,6 +77,7 @@
         toggleWords(); // Inicia o loop
       });
     </script>
+    <script src="highscore.js"></script>
     <script src="script.js"></script>
 
   </body>

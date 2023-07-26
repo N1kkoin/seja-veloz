@@ -20,8 +20,7 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
-
+    overflow-y: auto;
 }
 img{
   max-width: 300px;
@@ -55,14 +54,11 @@ h1 {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  margin: 20px auto;
   font-size: small;
-  color: #b6b6c4;
-  max-height: 100px;
-  margin-bottom: 10px;
+  color: #d0d0db;
+
 }
 
 .segundoseponto{
@@ -171,7 +167,7 @@ input:focus {
   z-index: 9999;
   border-radius: 5px;
   width: 255px;
-  max-height: 200px;
+  max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
@@ -192,7 +188,7 @@ input:focus {
   #wordList span {
     display: block;
   }
-  /* Estilos para o elemento "+2" */
+  /* Estilos para o elemento "+3" */
   .bonus {
     position: fixed;
     top: 280px;
@@ -210,7 +206,6 @@ input:focus {
     50% { opacity: 1; transform: translate(-50%, -50%); }
     100% { opacity: 0; transform: translate(-50%, -70%); } /* Move 20% para cima (ajuste o valor conforme necessário) */
   }
-
 
   #languageSelection button{
     border: 0;
@@ -234,7 +229,7 @@ input:focus {
 
   .hidden-word {
     display: none;
-  }
+  } 
 
 
 /* Estilos para o popup do leaderboard */
@@ -245,11 +240,10 @@ input:focus {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border: 2px solid #007bff;
+  border-radius: 5px;
   z-index: 999;
-  max-width: 80%;
 }
 
 .closeButton {
@@ -293,6 +287,7 @@ input:focus {
 /* Estilos para a tabela de classificação */
 #leaderboardList {
   margin-top: 10px;
+  
 }
 
 /* Estilos para as células da tabela de classificação */
@@ -310,7 +305,29 @@ input:focus {
   background-color: #f1f1f1;
 }
 
+.leaderboard-row:nth-child(2){
+  background-color: #f0e36f;
+}
+
+.leaderboard-row:nth-child(3){
+  background-color: #adadad;
+}
+
+.leaderboard-row:nth-child(4){
+  background-color: #a06e45;
+}
+
 .leaderboard-header {
   font-weight: bold;
+}
+
+.leaderboard-estrela{
+  text-align: right;
+}
+.leaderboard-nome{
+  text-align: center;
+}
+.leaderboard-score{
+  text-align: left;
 }
 

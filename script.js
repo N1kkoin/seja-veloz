@@ -267,7 +267,7 @@ function displayLeaderboard() {
   // Adicionar cabeçalho da tabela
   leaderboardHTML += `
     <div class="leaderboard-row leaderboard-header">
-      <div>Classificação</div>
+      <div><i class="fa fa-star"></i></div>
       <div>Nome</div>
       <div><i class="fa fa-check"></i></div>
     </div>
@@ -276,9 +276,9 @@ function displayLeaderboard() {
   for (let i = 0; i < leaderboard.length; i++) {
     leaderboardHTML += `
       <div class="leaderboard-row">
-        <div>${i + 1}</div>
-        <div>${leaderboard[i].name}</div>
-        <div>${leaderboard[i].score}</div>
+        <div class="leaderboard-estrela">${i + 1}</div>
+        <div class="leaderboard-nome">${leaderboard[i].name}</div>
+        <div class="leaderboard-score">${leaderboard[i].score}</div>
       </div>
     `;
   }

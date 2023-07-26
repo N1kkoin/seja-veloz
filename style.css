@@ -303,8 +303,6 @@ input:focus {
 
 /* Estilos para as células da tabela de classificação */
 .leaderboard-row {
-  display: flex;
-  justify-content: space-between;
   padding: 5px;
 }
 
@@ -316,15 +314,15 @@ input:focus {
   background-color: #f1f1f1;
 }
 
-.leaderboard-row:nth-child(2){
+.coresdaoras:nth-child(1){
   background-color: #ffe46a;
 }
 
-.leaderboard-row:nth-child(3){
+.coresdaoras:nth-child(2){
   background-color: #c2c2c2;
 }
 
-.leaderboard-row:nth-child(4){
+.coresdaoras:nth-child(3){
   background-color: #db9e6c;
 }
 
@@ -341,7 +339,7 @@ input:focus {
 }
 
 .leaderboard-estrela{
-  text-align: left;
+  text-align: center;
   padding: 5px 10px;
 }
 
@@ -352,20 +350,26 @@ input:focus {
 }
 
 .leaderboard-score{
-  text-align: right;
+  text-align: center;
   padding: 5px 10px;
 }
 
 .leaderboard-tempo{
-  text-align: right;
+  text-align: center;
   padding: 5px 10px;
   flex: 3; 
 }
 
 .leaderboard-linguagem{
-  text-align: right;
+  text-align: center;
   padding: 5px 10px; 
   flex: 3; 
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid white; /* Cor da borda da tabela */
 }
 
 @media (max-width: 400px) {
@@ -393,3 +397,6 @@ input:focus {
       margin-right: 20px;
     }
 }
+
+
+

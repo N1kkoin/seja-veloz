@@ -28,6 +28,7 @@ async function setLanguage(language) {
   } else if (language === 'en-us') {
       wordsFile = "words.json"; // Define o caminho para o arquivo de palavras em inglês
   }
+  selectedLanguage = language; // Store the selected language in the variable
   await fetchWords(); // Carrega o arquivo de palavras correspondente ao idioma escolhido
   document.getElementById('startButton').disabled = false; // Habilita o botão de iniciar o jogo após a seleção de idioma
 }
@@ -286,45 +287,56 @@ firebase.initializeApp(config);
   function displayLeaderboard() {
     const leaderboardList = document.getElementById("leaderboardList");
     let leaderboardHTML = "";
-
-     // Assuming your Firebase database structure has a "leaderboard" node with the given data
-     const leaderboardRef = firebase.database().ref("leaderboard");
-
-  // Adicionar cabeçalho da tabela
-  leaderboardHTML += `
-    <div class="leaderboard-row leaderboard-header">
-      <div class="leaderboard-estrela"><i class="fa fa-star"></i></div>
-      <div class="leaderboard-nome">Nome</div>
-      <div class="leaderboard-linguagem">Idioma</div> <!-- New column for the language -->
-      <div class="leaderboard-tempo"><i class="fa fa-clock-o"></i></div> <!-- Novo cabeçalho para a categoria de tempo -->
-      <div class="leaderboard-score"><i class="fa fa-check"></i></div>
-    </div>
-  `;
-
-  // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
-  leaderboardRef.once("value", (snapshot) => {
-    const leaderboard = snapshot.val();
-
-    if (leaderboard) {
-      Object.keys(leaderboard).forEach((key, index) => {
-        const entry = leaderboard[key];
-        leaderboardHTML += `
-          <div class="leaderboard-row">
-            <div class="leaderboard-estrela">${index + 1}</div>
-            <div class="leaderboard-nome">${entry.name}</div>
-            <div class="leaderboard-linguagem">${
-              entry.language === "pt" ? "PT" : "EN"
-            }</div>
-            <div class="leaderboard-tempo">${entry.time} s</div>
-            <div class="leaderboard-score">${entry.score}</div>
-          </div>
-        `;
-      });
-    }
-
-    leaderboardList.innerHTML = leaderboardHTML;
-  });
-}
+  
+    // Assuming your Firebase database structure has a "leaderboard" node with the given data
+    const leaderboardRef = firebase.database().ref("leaderboard");
+  
+    // Adicionar cabeçalho da tabela
+    leaderboardHTML += `
+      <table class="leaderboard-table">
+        <thead>
+          <tr class="leaderboard-row leaderboard-header">
+            <th class="leaderboard-estrela"><i class="fa fa-star"></i></th>
+            <th class="leaderboard-nome">Nome</th>
+            <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
+            <!-- New column for the language -->
+            <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
+            <!-- Novo cabeçalho para a categoria de tempo -->
+            <th class="leaderboard-score"><i class="fa fa-check"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+  
+    // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
+    leaderboardRef.once("value", (snapshot) => {
+      const leaderboard = snapshot.val();
+  
+      if (leaderboard) {
+        // Convert the leaderboard object to an array
+        const leaderboardArray = Object.keys(leaderboard).map((key) => leaderboard[key]);
+  
+        // Sort the leaderboard array by score in descending order
+        leaderboardArray.sort((a, b) => b.score - a.score);
+  
+        // Render the sorted data
+        leaderboardArray.forEach((entry, index) => {
+          leaderboardHTML += `
+            <tr class="leaderboard-row coresdaoras">
+              <td class="leaderboard-estrela">${index + 1}</td>
+              <td class="leaderboard-nome">${entry.name}</td>
+              <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
+              <td class="leaderboard-tempo">${entry.time} s</td>
+              <td class="leaderboard-score">${entry.score}</td>
+            </tr>
+          `;
+        });
+      }
+  
+      leaderboardList.innerHTML = leaderboardHTML;
+    });
+  }
+  
 
 // Call the function to display the leaderboard
 displayLeaderboard();

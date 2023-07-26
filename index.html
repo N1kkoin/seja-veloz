@@ -32,7 +32,15 @@
         <button onclick="setLanguage('en-us')">EN</button>
       </div>
       <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
+      <!-- Adicione este botão onde você deseja exibir o popup do leaderboard -->
+      <button id="showLeaderboardButton">Exibir Leaderboard</button>
       <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
+    </div>
+
+    <div id="leaderboardPopup" class="popup">
+      <span class="closeButton" id="closeLeaderboard">&times;</span>
+      <h2>Leaderboard</h2>
+      <div id="leaderboardList"></div>
     </div>
 
     <div id="wordPopup">
@@ -40,7 +48,9 @@
       <div id="wordList"></div>
     </div>
 
-    <footer>Ver 1.3 | Seja Veloz</footer>
+    <footer>Ver 1.5 | Seja Veloz</footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {

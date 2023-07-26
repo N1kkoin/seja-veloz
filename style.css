@@ -20,8 +20,7 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
-
+    overflow-y: auto;
 }
 img{
   max-width: 300px;
@@ -54,15 +53,19 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 0px;
+}
+
 footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  margin: 20px auto;
   font-size: small;
-  color: #b6b6c4;
-  max-height: 100px;
-  margin-bottom: 10px;
+  color: #d0d0db;
+
 }
 
 .segundoseponto{
@@ -168,10 +171,10 @@ input:focus {
   border: 2px solid #007bff;
   padding: 20px;
   padding-top: 0px;
-  z-index: 9999;
+
   border-radius: 5px;
   width: 255px;
-  max-height: 200px;
+  max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
@@ -192,7 +195,7 @@ input:focus {
   #wordList span {
     display: block;
   }
-  /* Estilos para o elemento "+2" */
+  /* Estilos para o elemento "+3" */
   .bonus {
     position: fixed;
     top: 280px;
@@ -210,7 +213,6 @@ input:focus {
     50% { opacity: 1; transform: translate(-50%, -50%); }
     100% { opacity: 0; transform: translate(-50%, -70%); } /* Move 20% para cima (ajuste o valor conforme necessário) */
   }
-
 
   #languageSelection button{
     border: 0;
@@ -234,4 +236,167 @@ input:focus {
 
   .hidden-word {
     display: none;
+  } 
+
+
+/* Estilos para o popup do leaderboard */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  z-index: 999;
+  height: 490px;
+  width: 500px;
+  overflow-y: auto;
+  
+}
+
+.closeButton {
+  position: absolute;
+  top: 17px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 12px;
+}
+
+#leaderboardList {
+  margin-top: 10px;
+}
+
+/* Estilos para o botão de exibir leaderboard */
+#showLeaderboardButton {
+  font-size: 18px;
+  padding: 5px 20px;
+  background-color: white;
+  color: #000;  
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px; /* Largura mínima do botão */
+  max-width: 300px; /* Largura máxima do botão */
+  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+
+#showLeaderboardButton:hover {
+  border: 2px solid #45a049;
+}
+
+#showLeaderboardButton:focus {
+  outline: none;
+}
+
+/* Estilos para a tabela de classificação */
+#leaderboardList {
+  margin-top: 10px; 
+}
+
+/* Estilos para as células da tabela de classificação */
+.leaderboard-row {
+  padding: 5px;
+}
+
+.leaderboard-row:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.leaderboard-row:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.coresdaoras:nth-child(1){
+  background-color: #ffe46a;
+}
+
+.coresdaoras:nth-child(2){
+  background-color: #c2c2c2;
+}
+
+.coresdaoras:nth-child(3){
+  background-color: #db9e6c;
+}
+
+
+/* Styles for each column in the rows */
+.leaderboard-estrela,
+.leaderboard-nome,
+.leaderboard-score {
+  flex: 1; /* Equal width for all columns */
+}
+
+.leaderboard-header {
+  font-weight: bold;
+}
+
+.leaderboard-estrela{
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.leaderboard-nome{
+  text-align: left;
+  padding: 5px 10px;
+  flex: 6; 
+}
+
+.leaderboard-score{
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.leaderboard-tempo{
+  text-align: center;
+  padding: 5px 10px;
+  flex: 3; 
+}
+
+.leaderboard-linguagem{
+  text-align: center;
+  padding: 5px 10px; 
+  flex: 3; 
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid white; /* Cor da borda da tabela */
+}
+
+@media (max-width: 400px) {
+  .popup {
+    width: 80%; /* Reduz a largura para ocupar 90% da largura da tela */
   }
+  img{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  #startButton { 
+    flex: auto;
+  }
+  #showLeaderboardButton { 
+    flex: auto;
+  }
+
+  #wordPopup {
+    width: 80%;
+    
+    }
+
+    .botoes{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+}
+
+
+

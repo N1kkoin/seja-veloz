@@ -1,7 +1,10 @@
+
 let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
-let wordsFileEN = "palavras.json"; // Substitua pelo caminho correto
+let wordsFileEN = "words.json"; // Substitua pelo caminho correto
 let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
 
+let leaderboard = []; // Array que armazenará as informações do leaderboard
+let startTime; // Variável para armazenar o tempo inicial
 
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
@@ -25,6 +28,7 @@ async function setLanguage(language) {
   } else if (language === 'en-us') {
       wordsFile = "words.json"; // Define o caminho para o arquivo de palavras em inglês
   }
+  selectedLanguage = language; // Store the selected language in the variable
   await fetchWords(); // Carrega o arquivo de palavras correspondente ao idioma escolhido
   document.getElementById('startButton').disabled = false; // Habilita o botão de iniciar o jogo após a seleção de idioma
 }
@@ -59,11 +63,14 @@ function initializeGame() {
 function startGame() {
   resetGame();
   if (!isPlaying) {
+    startTime = Date.now(); // Registra o momento em que o jogo começou
     isPlaying = true;
     score = 0;
     document.getElementById("score").textContent = score;
     document.getElementById("startButton").style.display = "none"; // Esconde o botão "Iniciar Jogo"
     document.getElementById("languageSelection").style.display = "none";
+    document.getElementById("showLeaderboardButton").style.display = "none";
+
   
     // Limpar o conteúdo da caixa de texto de entrada
     document.getElementById("userInput").value = "";
@@ -89,12 +96,15 @@ function updateTimer() {
 }
 
 function endGame() {
+  
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
   document.getElementById("startButton").textContent = "Jogar Novamente";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
   document.getElementById("languageSelection").style.display = "inline-block";
+  document.getElementById("showLeaderboardButton").style.display = "inline-block";
+
   
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
@@ -108,12 +118,35 @@ function endGame() {
     // O tempo acabou, encerra o jogo
     return;
   }
+
+  // Obtém o nome do jogador
+  const playerName = prompt("Digite seu nome para salvar sua pontuação:");
+  const playerTime = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+
+  if (playerName) {
+    // Salva as informações do jogador no leaderboard
+    leaderboard.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
+
+    // Classifica o leaderboard em ordem decrescente de pontuação
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    // Limita o leaderboard a, por exemplo, 10 melhores pontuações (opcional)
+    leaderboard = leaderboard.slice(0, 20);
+
+    // Exibe o leaderboard atualizado
+    displayLeaderboard();
+
+  // Update the data in the Firebase database
+  const leaderboardRef = firebase.database().ref("leaderboard");
+  leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
+  }
 }
 
 function resetGame() {
   clearInterval(timer);
   isPlaying = false;
   score = 0;
+
   correctWords = [];
   document.getElementById("score").textContent = score;
   document.getElementById("userInput").disabled = true;
@@ -239,3 +272,105 @@ document.getElementById("userInput").addEventListener("paste", (event) => {
     userInput.style.color = "#333"; // Retorna à cor original do texto
   }, 500);
 });
+
+let config = {
+  apiKey: "AIzaSyCbrnx7JGLOo34Auq-r1h9bWmGYv6eZ-5w",
+  authDomain: "seja-veloz.firebaseapp.com",
+  databaseURL: "https://seja-veloz-default-rtdb.firebaseio.com",
+  projectId: "seja-veloz",
+  storageBucket: "",
+  messagingSenderId: "553532368659"
+};
+firebase.initializeApp(config);
+
+  // Function to display the leaderboard
+  function displayLeaderboard() {
+    const leaderboardList = document.getElementById("leaderboardList");
+    let leaderboardHTML = "";
+  
+    // Assuming your Firebase database structure has a "leaderboard" node with the given data
+    const leaderboardRef = firebase.database().ref("leaderboard");
+  
+    // Adicionar cabeçalho da tabela
+    leaderboardHTML += `
+      <table class="leaderboard-table">
+        <thead>
+          <tr class="leaderboard-row leaderboard-header">
+            <th class="leaderboard-estrela"><i class="fa fa-star"></i></th>
+            <th class="leaderboard-nome">Nome</th>
+            <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
+            <!-- New column for the language -->
+            <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
+            <!-- Novo cabeçalho para a categoria de tempo -->
+            <th class="leaderboard-score"><i class="fa fa-check"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+  
+    // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
+    leaderboardRef.once("value", (snapshot) => {
+      const leaderboard = snapshot.val();
+  
+      if (leaderboard) {
+        // Convert the leaderboard object to an array
+        const leaderboardArray = Object.keys(leaderboard).map((key) => leaderboard[key]);
+  
+        // Sort the leaderboard array by score in descending order
+        leaderboardArray.sort((a, b) => b.score - a.score);
+  
+        // Render the sorted data
+        leaderboardArray.forEach((entry, index) => {
+          leaderboardHTML += `
+            <tr class="leaderboard-row coresdaoras">
+              <td class="leaderboard-estrela">${index + 1}</td>
+              <td class="leaderboard-nome">${entry.name}</td>
+              <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
+              <td class="leaderboard-tempo">${entry.time} s</td>
+              <td class="leaderboard-score">${entry.score}</td>
+            </tr>
+          `;
+        });
+      }
+  
+      leaderboardList.innerHTML = leaderboardHTML;
+    });
+  }
+  
+
+// Call the function to display the leaderboard
+displayLeaderboard();
+
+// ... (código existente)
+
+// Event listener para reiniciar o jogo ao recarregar a página
+window.addEventListener("unload", () => {
+  // ... (código existente)
+
+  // Antes de reiniciar o jogo, limpe o event listener do botão "Iniciar Jogo"
+  document.getElementById("startButton").removeEventListener("click", startGame);
+  resetGame();
+});
+
+// Mostrar o leaderboard atualizado ao carregar a página
+displayLeaderboard();
+
+
+// ... (código existente)
+
+function showLeaderboardPopup() {
+  const leaderboardPopup = document.getElementById("leaderboardPopup");
+  leaderboardPopup.style.display = "block";
+}
+
+function hideLeaderboardPopup() {
+  const leaderboardPopup = document.getElementById("leaderboardPopup");
+  leaderboardPopup.style.display = "none";
+}
+
+// Event listener para o botão de exibir leaderboard
+document.getElementById("showLeaderboardButton").addEventListener("click", showLeaderboardPopup);
+
+// Event listener para o botão de fechar o popup do leaderboard
+document.getElementById("closeLeaderboard").addEventListener("click", hideLeaderboardPopup);
+

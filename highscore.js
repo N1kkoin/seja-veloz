@@ -48,17 +48,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
   
-    function savePlayerData(name, score) {
-      // Recupera os dados salvos no localStorage
-      const playersData = JSON.parse(localStorage.getItem("playersData") || "[]");
-  
-      // Adiciona o novo jogador aos dados
-      playersData.push({ name, score });
-  
-      // Salva os dados atualizados no localStorage
-      localStorage.setItem("playersData", JSON.stringify(playersData));
-    }
-  
+      function savePlayerData(name, score) {
+        // Recupera os dados salvos no localStorage
+        const playersData = JSON.parse(localStorage.getItem("playersData") || "[]");
+
+        // Adiciona o novo jogador aos dados
+        playersData.push({ name, score });
+
+        // Salva os dados atualizados no localStorage
+        localStorage.setItem("playersData", JSON.stringify(playersData));
+      }
+
+      // Função chamada ao final do jogo
+      function endGame() {
+        const playerName = prompt("Parabéns! Você fez uma pontuação alta! Digite seu nome:");
+        const playerScore = 100; // Substitua 100 pela pontuação real do jogador
+
+        if (playerName) {
+          savePlayerData(playerName, playerScore);
+        }
+      }
+      
     // Exemplo de uso: chame a função savePlayerData(name, score) quando o jogo terminar
     // savePlayerData("Nome do Jogador", 100);
   

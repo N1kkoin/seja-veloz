@@ -1,10 +1,10 @@
+
 let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
 let wordsFileEN = "words.json"; // Substitua pelo caminho correto
 let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
 
 let leaderboard = []; // Array que armazenará as informações do leaderboard
 let startTime; // Variável para armazenar o tempo inicial
-
 
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
@@ -68,6 +68,8 @@ function startGame() {
     document.getElementById("score").textContent = score;
     document.getElementById("startButton").style.display = "none"; // Esconde o botão "Iniciar Jogo"
     document.getElementById("languageSelection").style.display = "none";
+    document.getElementById("showLeaderboardButton").style.display = "none";
+
   
     // Limpar o conteúdo da caixa de texto de entrada
     document.getElementById("userInput").value = "";
@@ -99,6 +101,8 @@ function endGame() {
   document.getElementById("startButton").textContent = "Jogar Novamente";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
   document.getElementById("languageSelection").style.display = "inline-block";
+  document.getElementById("showLeaderboardButton").style.display = "inline-block";
+
   
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
@@ -263,8 +267,8 @@ document.getElementById("userInput").addEventListener("paste", (event) => {
   }, 500);
 });
 
-
 function displayLeaderboard() {
+  
   const leaderboardList = document.getElementById("leaderboardList");
   let leaderboardHTML = "";
 
@@ -324,3 +328,4 @@ document.getElementById("showLeaderboardButton").addEventListener("click", showL
 
 // Event listener para o botão de fechar o popup do leaderboard
 document.getElementById("closeLeaderboard").addEventListener("click", hideLeaderboardPopup);
+

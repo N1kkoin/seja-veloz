@@ -3,6 +3,7 @@ let wordsFileEN = "words.json"; // Substitua pelo caminho correto
 let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
 
 let leaderboard = []; // Array que armazenará as informações do leaderboard
+let startTime; // Variável para armazenar o tempo inicial
 
 
 let words = []; // Array que armazenará as palavras
@@ -61,6 +62,7 @@ function initializeGame() {
 function startGame() {
   resetGame();
   if (!isPlaying) {
+    startTime = Date.now(); // Registra o momento em que o jogo começou
     isPlaying = true;
     score = 0;
     document.getElementById("score").textContent = score;
@@ -113,7 +115,7 @@ function endGame() {
 
   // Obtém o nome do jogador
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
-  const playerTime = 15 - timeLeft; // Substitua o valor 15 pelo tempo inicial que você definir na função initializeGame().
+  const playerTime = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard
@@ -134,6 +136,7 @@ function resetGame() {
   clearInterval(timer);
   isPlaying = false;
   score = 0;
+
   correctWords = [];
   document.getElementById("score").textContent = score;
   document.getElementById("userInput").disabled = true;
@@ -280,7 +283,7 @@ function displayLeaderboard() {
       <div class="leaderboard-row">
         <div class="leaderboard-estrela">${i + 1}</div>
         <div class="leaderboard-nome">${leaderboard[i].name}</div>
-        <div class="leaderboard-tempo">${leaderboard[i].time} S</div> <!-- Nova coluna para exibir o tempo -->
+        <div class="leaderboard-tempo">${leaderboard[i].time} s</div> <!-- Nova coluna para exibir o tempo -->
         <div class="leaderboard-score">${leaderboard[i].score}</div>
         </div>
     `;

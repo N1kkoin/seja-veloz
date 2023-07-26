@@ -95,6 +95,7 @@ function updateTimer() {
 }
 
 function endGame() {
+  
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
@@ -133,6 +134,10 @@ function endGame() {
 
     // Exibe o leaderboard atualizado
     displayLeaderboard();
+
+  // Update the data in the Firebase database
+  const leaderboardRef = firebase.database().ref("leaderboard");
+  leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
   }
 }
 
@@ -267,10 +272,23 @@ document.getElementById("userInput").addEventListener("paste", (event) => {
   }, 500);
 });
 
-function displayLeaderboard() {
-  
-  const leaderboardList = document.getElementById("leaderboardList");
-  let leaderboardHTML = "";
+let config = {
+  apiKey: "AIzaSyCbrnx7JGLOo34Auq-r1h9bWmGYv6eZ-5w",
+  authDomain: "seja-veloz.firebaseapp.com",
+  databaseURL: "https://seja-veloz-default-rtdb.firebaseio.com",
+  projectId: "seja-veloz",
+  storageBucket: "",
+  messagingSenderId: "553532368659"
+};
+firebase.initializeApp(config);
+
+  // Function to display the leaderboard
+  function displayLeaderboard() {
+    const leaderboardList = document.getElementById("leaderboardList");
+    let leaderboardHTML = "";
+
+     // Assuming your Firebase database structure has a "leaderboard" node with the given data
+     const leaderboardRef = firebase.database().ref("leaderboard");
 
   // Adicionar cabeçalho da tabela
   leaderboardHTML += `
@@ -283,20 +301,33 @@ function displayLeaderboard() {
     </div>
   `;
 
-  for (let i = 0; i < leaderboard.length; i++) {
-    leaderboardHTML += `
-      <div class="leaderboard-row">
-        <div class="leaderboard-estrela">${i + 1}</div>
-        <div class="leaderboard-nome">${leaderboard[i].name}</div>
-        <div class="leaderboard-linguagem">${leaderboard[i].language === 'pt' ? 'PT' : 'EN'}</div> <!-- Display "pt" or "en-us" based on the language -->
-        <div class="leaderboard-tempo">${leaderboard[i].time} s</div> <!-- Nova coluna para exibir o tempo -->
-        <div class="leaderboard-score">${leaderboard[i].score}</div>
-        </div>
-    `;
-  }
+  // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
+  leaderboardRef.once("value", (snapshot) => {
+    const leaderboard = snapshot.val();
 
-  leaderboardList.innerHTML = leaderboardHTML;
+    if (leaderboard) {
+      Object.keys(leaderboard).forEach((key, index) => {
+        const entry = leaderboard[key];
+        leaderboardHTML += `
+          <div class="leaderboard-row">
+            <div class="leaderboard-estrela">${index + 1}</div>
+            <div class="leaderboard-nome">${entry.name}</div>
+            <div class="leaderboard-linguagem">${
+              entry.language === "pt" ? "PT" : "EN"
+            }</div>
+            <div class="leaderboard-tempo">${entry.time} s</div>
+            <div class="leaderboard-score">${entry.score}</div>
+          </div>
+        `;
+      });
+    }
+
+    leaderboardList.innerHTML = leaderboardHTML;
+  });
 }
+
+// Call the function to display the leaderboard
+displayLeaderboard();
 
 // ... (código existente)
 

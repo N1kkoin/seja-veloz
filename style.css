@@ -252,7 +252,7 @@ input:focus {
   border-radius: 5px;
   z-index: 999;
   height: 490px;
-  width: 350px;
+  width: 500px;
   overflow-y: auto;
   
 }
@@ -332,8 +332,7 @@ input:focus {
 /* Styles for each column in the rows */
 .leaderboard-estrela,
 .leaderboard-nome,
-.leaderboard-score,
-.leaderboard-linguagem {
+.leaderboard-score {
   flex: 1; /* Equal width for all columns */
 }
 
@@ -366,6 +365,7 @@ input:focus {
 .leaderboard-linguagem{
   text-align: right;
   padding: 5px 10px; 
+  flex: 3; 
 }
 
 @media (max-width: 400px) {

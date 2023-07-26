@@ -32,23 +32,17 @@
         <button onclick="setLanguage('en-us')">EN</button>
       </div>
       <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
-        <!-- Botão para abrir o popup -->
-      <button id="showLeaderboardBtn">Mostrar Leaderboard</button>
+      <!-- Adicione este botão onde você deseja exibir o popup do leaderboard -->
+      <button id="showLeaderboardButton">Exibir Leaderboard</button>
       <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;">Palavras Corretas</button>
     </div>
 
 
-
-  <!-- Popup com a tabela do leaderboard -->
-  <div id="popup" style="display: none;">
-    <table id="leaderboard-table">
-      <tr>
-        <th>Posição</th>
-        <th>Nome do Jogador</th>
-        <th>Pontuação</th>
-      </tr>
-    </table>
-  </div>
+    <div id="leaderboardPopup" class="popup">
+      <span class="closeButton" id="closeLeaderboard">&times;</span>
+      <h2>Leaderboard</h2>
+      <div id="leaderboardList"></div>
+    </div>
 
     <div id="wordPopup">
       <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>

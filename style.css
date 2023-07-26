@@ -237,39 +237,35 @@ input:focus {
   }
 
 
-  /* Estilos para o popup */
-#popup {
+/* Estilos para o popup do leaderboard */
+.popup {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  max-width: 90%;
   padding: 20px;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 9999;
+  z-index: 999;
+  max-width: 80%;
 }
 
-/* Estilos para a tabela do leaderboard */
-#leaderboard-table {
-  width: 100%;
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-#leaderboard-table th, #leaderboard-table td {
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
+#leaderboardList {
+  margin-top: 10px;
 }
 
-#leaderboard-table th {
-  background-color: #f2f2f2;
-}
-
-/* Estilos para o botão */
-#showLeaderboardBtn {
+/* Estilos para o botão de exibir leaderboard */
+#showLeaderboardButton {
   font-size: 18px;
   padding: 5px 20px;
   background-color: white;
@@ -285,10 +281,36 @@ input:focus {
   font-size: 16px;
 }
 
-#showLeaderboardBtn:hover {
+
+#showLeaderboardButton:hover {
   border: 2px solid #45a049;
 }
 
-#showLeaderboardBtn:focus {
+#showLeaderboardButton:focus {
   outline: none;
 }
+
+/* Estilos para a tabela de classificação */
+#leaderboardList {
+  margin-top: 10px;
+}
+
+/* Estilos para as células da tabela de classificação */
+.leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.leaderboard-row:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.leaderboard-row:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.leaderboard-header {
+  font-weight: bold;
+}
+

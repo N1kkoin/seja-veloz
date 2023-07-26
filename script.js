@@ -2,6 +2,8 @@ let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
 let wordsFileEN = "palavras.json"; // Substitua pelo caminho correto
 let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
 
+let leaderboard = []; // Array que armazenará as informações do leaderboard
+
 
 let words = []; // Array que armazenará as palavras
 let correctWords = []; // Array que armazenará as palavras corretas
@@ -107,6 +109,23 @@ function endGame() {
   if (timeLeftWithBonus <= 0) {
     // O tempo acabou, encerra o jogo
     return;
+  }
+
+  // Obtém o nome do jogador
+  const playerName = prompt("Digite seu nome para salvar sua pontuação:");
+
+  if (playerName) {
+    // Salva as informações do jogador no leaderboard
+    leaderboard.push({ name: playerName, score: score });
+
+    // Classifica o leaderboard em ordem decrescente de pontuação
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    // Limita o leaderboard a, por exemplo, 10 melhores pontuações (opcional)
+    leaderboard = leaderboard.slice(0, 10);
+
+    // Exibe o leaderboard atualizado
+    displayLeaderboard();
   }
 }
 
@@ -239,3 +258,63 @@ document.getElementById("userInput").addEventListener("paste", (event) => {
     userInput.style.color = "#333"; // Retorna à cor original do texto
   }, 500);
 });
+
+
+function displayLeaderboard() {
+  const leaderboardList = document.getElementById("leaderboardList");
+  let leaderboardHTML = "";
+
+  // Adicionar cabeçalho da tabela
+  leaderboardHTML += `
+    <div class="leaderboard-row leaderboard-header">
+      <div>Classificação</div>
+      <div>Nome</div>
+      <div><i class="fa fa-check"></i></div>
+    </div>
+  `;
+
+  for (let i = 0; i < leaderboard.length; i++) {
+    leaderboardHTML += `
+      <div class="leaderboard-row">
+        <div>${i + 1}</div>
+        <div>${leaderboard[i].name}</div>
+        <div>${leaderboard[i].score}</div>
+      </div>
+    `;
+  }
+
+  leaderboardList.innerHTML = leaderboardHTML;
+}
+
+// ... (código existente)
+
+// Event listener para reiniciar o jogo ao recarregar a página
+window.addEventListener("unload", () => {
+  // ... (código existente)
+
+  // Antes de reiniciar o jogo, limpe o event listener do botão "Iniciar Jogo"
+  document.getElementById("startButton").removeEventListener("click", startGame);
+  resetGame();
+});
+
+// Mostrar o leaderboard atualizado ao carregar a página
+displayLeaderboard();
+
+
+// ... (código existente)
+
+function showLeaderboardPopup() {
+  const leaderboardPopup = document.getElementById("leaderboardPopup");
+  leaderboardPopup.style.display = "block";
+}
+
+function hideLeaderboardPopup() {
+  const leaderboardPopup = document.getElementById("leaderboardPopup");
+  leaderboardPopup.style.display = "none";
+}
+
+// Event listener para o botão de exibir leaderboard
+document.getElementById("showLeaderboardButton").addEventListener("click", showLeaderboardPopup);
+
+// Event listener para o botão de fechar o popup do leaderboard
+document.getElementById("closeLeaderboard").addEventListener("click", hideLeaderboardPopup);

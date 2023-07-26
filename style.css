@@ -356,6 +356,12 @@ input:focus {
   padding: 5px 10px;
 }
 
+.leaderboard-tempo{
+  text-align: right;
+  padding: 5px 10px;
+  flex: 3; 
+}
+
 @media (max-width: 400px) {
   .popup {
     width: 80%; /* Reduz a largura para ocupar 90% da largura da tela */

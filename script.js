@@ -1,5 +1,5 @@
 let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
-let wordsFileEN = "palavras.json"; // Substitua pelo caminho correto
+let wordsFileEN = "words.json"; // Substitua pelo caminho correto
 let wordsFile; // Variável para armazenar o caminho do arquivo com as palavras
 
 let leaderboard = []; // Array que armazenará as informações do leaderboard
@@ -113,16 +113,17 @@ function endGame() {
 
   // Obtém o nome do jogador
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
+  const playerTime = 15 - timeLeft; // Substitua o valor 15 pelo tempo inicial que você definir na função initializeGame().
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard
-    leaderboard.push({ name: playerName, score: score });
+    leaderboard.push({ name: playerName, score: score, time: playerTime });
 
     // Classifica o leaderboard em ordem decrescente de pontuação
     leaderboard.sort((a, b) => b.score - a.score);
 
     // Limita o leaderboard a, por exemplo, 10 melhores pontuações (opcional)
-    leaderboard = leaderboard.slice(0, 10);
+    leaderboard = leaderboard.slice(0, 20);
 
     // Exibe o leaderboard atualizado
     displayLeaderboard();
@@ -269,6 +270,7 @@ function displayLeaderboard() {
     <div class="leaderboard-row leaderboard-header">
       <div class="leaderboard-estrela"><i class="fa fa-star"></i></div>
       <div class="leaderboard-nome">Nome</div>
+      <div class="leaderboard-tempo"><i class="fa fa-clock-o"></i></div> <!-- Novo cabeçalho para a categoria de tempo -->
       <div class="leaderboard-score"><i class="fa fa-check"></i></div>
     </div>
   `;
@@ -278,8 +280,9 @@ function displayLeaderboard() {
       <div class="leaderboard-row">
         <div class="leaderboard-estrela">${i + 1}</div>
         <div class="leaderboard-nome">${leaderboard[i].name}</div>
+        <div class="leaderboard-tempo">${leaderboard[i].time} S</div> <!-- Nova coluna para exibir o tempo -->
         <div class="leaderboard-score">${leaderboard[i].score}</div>
-      </div>
+        </div>
     `;
   }
 

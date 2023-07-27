@@ -121,7 +121,27 @@ function endGame() {
 
   // Obtém o nome do jogador
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
-  const playerTime = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+  const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+
+  // Extrai as horas, minutos e segundos do tempo total em segundos
+  const hours = Math.floor(playerTimeInSeconds / 3600);
+  const remainingSeconds = playerTimeInSeconds % 3600;
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
+  // Formatação com zeros à esquerda para garantir que os valores sejam mostrados com dois dígitos
+  const formattedHours = hours > 0 ? String(hours).padStart(2, '0') + 'h' : '';
+  const formattedMinutes = minutes > 0 ? String(minutes).padStart(2, '0') + 'm' : '';
+  const formattedSeconds = String(seconds).padStart(2, '0') + 's';
+
+  // Concatenação do resultado formatado
+  let playerTime = formattedHours + formattedMinutes + formattedSeconds;
+
+  // Remover o "0m" se não houver minutos
+  playerTime = playerTime.replace(/^0m/, '');
+
+  // Remover o "0h" se não houver horas
+  playerTime = playerTime.replace(/^0h/, '');
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard
@@ -301,7 +321,6 @@ firebase.initializeApp(config);
             <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
             <!-- New column for the language -->
             <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
-            <!-- Novo cabeçalho para a categoria de tempo -->
             <th class="leaderboard-score"><i class="fa fa-check"></i></th>
           </tr>
         </thead>
@@ -326,7 +345,7 @@ firebase.initializeApp(config);
               <td class="leaderboard-estrela">${index + 1}</td>
               <td class="leaderboard-nome">${entry.name}</td>
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
-              <td class="leaderboard-tempo">${entry.time} s</td>
+              <td class="leaderboard-tempo">${entry.time}</td>
               <td class="leaderboard-score">${entry.score}</td>
             </tr>
           `;

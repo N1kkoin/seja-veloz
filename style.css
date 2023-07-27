@@ -171,7 +171,6 @@ input:focus {
   border: 2px solid #007bff;
   padding: 20px;
   padding-top: 0px;
-
   border-radius: 5px;
   width: 255px;
   max-height: 350px;
@@ -372,7 +371,7 @@ input:focus {
   border: 2px solid white; /* Cor da borda da tabela */
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .popup {
     width: 80%; /* Reduz a largura para ocupar 90% da largura da tela */
   }
@@ -390,11 +389,6 @@ input:focus {
   #wordPopup {
     width: 80%;
     
-    }
-
-    .botoes{
-      margin-left: 20px;
-      margin-right: 20px;
     }
 }
 

@@ -1,3 +1,4 @@
+let perfectionistMode = false; // Variável para verificar se o modo perfeccionista está ativado
 
 let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
 let wordsFileEN = "words.json"; // Substitua pelo caminho correto
@@ -212,6 +213,13 @@ window.addEventListener("unload", () => {
   resetGame();
 });
 
+document.getElementById('perfectionistModeButton').addEventListener('click', function() {
+  perfectionistMode = !perfectionistMode; // Alternar o modo perfeccionista
+  // Atualize o texto do botão com base no status do modo perfeccionista
+  this.textContent = perfectionistMode ? 'Modo Normal' : 'Modo Perfeccionista';
+});
+
+
 let isCheckingWord = false; // Variável para evitar chamadas repetidas da função checkWord()
 
 function checkWord() {
@@ -240,6 +248,10 @@ function checkWord() {
       } else {
         // Letra errada, defina a cor para vermelho
         letterSpan.style.color = "red";
+        // Se o modo perfeccionista estiver ativado e a palavra estiver errada, terminar o jogo
+        if (perfectionistMode) {
+          endGame();
+        }
       }
 
       wordDisplay.appendChild(letterSpan); // Adiciona a letra colorida à exibição

@@ -121,7 +121,18 @@ function endGame() {
 
   // Obtém o nome do jogador
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
-  const playerTime = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+  const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+
+// Extrai os minutos e segundos do tempo total em segundos
+const minutes = Math.floor(playerTimeInSeconds / 60);
+const seconds = playerTimeInSeconds % 60;
+
+// Formatação dos minutos e segundos com zeros à esquerda para garantir que sejam sempre mostrados com dois dígitos
+const formattedMinutes = String(minutes).padStart(2, '0');
+const formattedSeconds = String(seconds).padStart(2, '0');
+
+// Concatenação do resultado formatado
+const playerTime = `${formattedMinutes}m${formattedSeconds}s`;
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard
@@ -301,7 +312,6 @@ firebase.initializeApp(config);
             <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
             <!-- New column for the language -->
             <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
-            <!-- Novo cabeçalho para a categoria de tempo -->
             <th class="leaderboard-score"><i class="fa fa-check"></i></th>
           </tr>
         </thead>
@@ -326,7 +336,7 @@ firebase.initializeApp(config);
               <td class="leaderboard-estrela">${index + 1}</td>
               <td class="leaderboard-nome">${entry.name}</td>
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
-              <td class="leaderboard-tempo">${entry.time} s</td>
+              <td class="leaderboard-tempo">${entry.time}</td>
               <td class="leaderboard-score">${entry.score}</td>
             </tr>
           `;

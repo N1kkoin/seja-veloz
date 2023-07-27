@@ -123,16 +123,25 @@ function endGame() {
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
   const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
 
-// Extrai os minutos e segundos do tempo total em segundos
-const minutes = Math.floor(playerTimeInSeconds / 60);
-const seconds = playerTimeInSeconds % 60;
+  // Extrai as horas, minutos e segundos do tempo total em segundos
+  const hours = Math.floor(playerTimeInSeconds / 3600);
+  const remainingSeconds = playerTimeInSeconds % 3600;
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
 
-// Formatação dos minutos e segundos com zeros à esquerda para garantir que sejam sempre mostrados com dois dígitos
-const formattedMinutes = String(minutes).padStart(2, '0');
-const formattedSeconds = String(seconds).padStart(2, '0');
+  // Formatação com zeros à esquerda para garantir que os valores sejam mostrados com dois dígitos
+  const formattedHours = hours > 0 ? String(hours).padStart(2, '0') + 'h' : '';
+  const formattedMinutes = minutes > 0 ? String(minutes).padStart(2, '0') + 'm' : '';
+  const formattedSeconds = String(seconds).padStart(2, '0') + 's';
 
-// Concatenação do resultado formatado
-const playerTime = `${formattedMinutes}m${formattedSeconds}s`;
+  // Concatenação do resultado formatado
+  let playerTime = formattedHours + formattedMinutes + formattedSeconds;
+
+  // Remover o "0m" se não houver minutos
+  playerTime = playerTime.replace(/^0m/, '');
+
+  // Remover o "0h" se não houver horas
+  playerTime = playerTime.replace(/^0h/, '');
 
   if (playerName) {
     // Salva as informações do jogador no leaderboard

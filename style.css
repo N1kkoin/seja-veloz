@@ -175,8 +175,7 @@ input:focus {
   display: none;
   position: relative;
   margin: 20px auto;
-  background-color: #fff;
-  border: 2px solid #007bff;
+  background-color: #f4f7fd;
   padding: 20px;
   padding-top: 0px;
   border-radius: 5px;

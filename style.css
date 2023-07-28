@@ -434,4 +434,79 @@ input:focus {
 }
 
 
+/* Estilos para os botões */
+.buttonsts {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
 
+.buttonsts button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.buttonsts button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para as caixas de conteúdo */
+.tutorial-box,
+.about-box {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: left;
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 999;
+  margin: 20px;
+  margin-bottom: 80px;
+  border: 2px solid #000;
+}
+
+.tutorial-box h2,
+.about-box h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.tutorial-box p,
+.about-box p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tutorial-box button,
+.about-box button {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.tutorial-box button:hover,
+.about-box button:hover {
+  background-color: #0056b3;
+}
+
+.link{
+  text-decoration: none;
+  font-weight: 700;
+  color: #29907F;
+}

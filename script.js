@@ -427,3 +427,29 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
+
+// Funções para mostrar/ocultar as caixas de conteúdo
+function toggleTutorial() {
+  var tutorialBox = document.getElementById("tutorialBox");
+  var aboutBox = document.getElementById("aboutBox");
+
+  if (tutorialBox.style.display === "block") {
+    tutorialBox.style.display = "none";
+  } else {
+    aboutBox.style.display = "none";
+    tutorialBox.style.display = "block";
+  }
+}
+
+function toggleAbout() {
+  var tutorialBox = document.getElementById("tutorialBox");
+  var aboutBox = document.getElementById("aboutBox");
+
+  if (aboutBox.style.display === "block") {
+    aboutBox.style.display = "none";
+  } else {
+    tutorialBox.style.display = "none";
+    aboutBox.style.display = "block";
+  }
+}

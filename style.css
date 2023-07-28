@@ -35,6 +35,12 @@ img{
   padding: 10px;
   margin: 0 auto;
   border-radius: 10px;
+  border: 2px solid white; 
+}
+
+/* Estilize a borda para o elemento .blocotexto quando estiver ativo */
+.blocotexto.active {
+  border: 2px solid #ff0000; /* Escolha a cor e a espessura da borda como desejar */
 }
 
 .botoes{
@@ -288,20 +294,35 @@ input:focus {
 
 #perfectionistModeButton{
   font-size: 18px;
-  padding: 5px 20px;
+  padding: 5px;
   background-color: #ff0000;
   color: white;  
-  border: 2px solid #ff0000;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-  width: 50px; /* Largura mínima do botão */
-  max-width: 50px; /* Largura máxima do botão */
+  min-width: 20px; /* Largura mínima do botão */
+  max-width: 30px; /* Largura máxima do botão */
   margin: 0 auto; /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
 
+#endGameButton{
+  font-size: 18px;
+  padding: 5px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;  
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px; /* Largura mínima do botão */
+  max-width: 300px; /* Largura máxima do botão */
+  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
 
 #showLeaderboardButton:hover {
   border: 2px solid #45a049;
@@ -401,7 +422,9 @@ input:focus {
   #showLeaderboardButton { 
     flex: auto;
   }
-
+  .blocotexto{
+    width: 87%;
+  }
   #wordPopup {
     width: 80%;
     

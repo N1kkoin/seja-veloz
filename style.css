@@ -30,7 +30,7 @@ img{
 }
 
 .blocotexto{
-  background-color: #d2dbf13a;
+  background-color: #f4f7fd;
   max-width: 300px;
   padding: 10px;
   margin: 0 auto;
@@ -466,13 +466,12 @@ input:focus {
   right: 0;
   text-align: left;
   width: 300px;
-  background-color: #fff;
+  background-color: #f4f7fd;
   padding: 20px;
   border-radius: 5px;
   z-index: 999;
   margin: 20px;
   margin-bottom: 80px;
-  border: 2px solid #000;
 }
 
 .tutorial-box h2,
@@ -496,7 +495,7 @@ input:focus {
   border: none;
   border-radius: 5px;
   color: #fff;
-  background-color: #007bff;
+  background-color: #07bff0;
   cursor: pointer;
 }
 

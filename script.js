@@ -1,3 +1,4 @@
+let perfectionistMode = false; // Variável para verificar se o modo perfeccionista está ativado
 
 let wordsFilePT = "palavras.json"; // Substitua pelo caminho correto
 let wordsFileEN = "words.json"; // Substitua pelo caminho correto
@@ -70,8 +71,9 @@ function startGame() {
     document.getElementById("startButton").style.display = "none"; // Esconde o botão "Iniciar Jogo"
     document.getElementById("languageSelection").style.display = "none";
     document.getElementById("showLeaderboardButton").style.display = "none";
+    document.getElementById("perfectionistModeButton").style.display = "none";
+    document.getElementById("endGameButton").style.display = "inline-block";
 
-  
     // Limpar o conteúdo da caixa de texto de entrada
     document.getElementById("userInput").value = "";
 
@@ -100,10 +102,13 @@ function endGame() {
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
-  document.getElementById("startButton").textContent = "Jogar Novamente";
+  document.getElementById("startButton").textContent = "Restart";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
   document.getElementById("languageSelection").style.display = "inline-block";
   document.getElementById("showLeaderboardButton").style.display = "inline-block";
+  document.getElementById("endGameButton").style.display = "none";
+  document.getElementById("perfectionistModeButton").style.display = "inline-block";
+  
 
   
   // Exibe o botão "Mostrar Palavras Corretas"
@@ -173,6 +178,7 @@ function resetGame() {
   document.getElementById("startButton").textContent = "Iniciar Jogo";
   document.getElementById("showWordsButton").style.display = "none";
   document.getElementById("wordDisplay").textContent = "";
+
   displayWord(); // Adiciona esta linha para mostrar a primeira palavra quando o jogo é reiniciado.
 
   hidePopup();
@@ -212,6 +218,13 @@ window.addEventListener("unload", () => {
   resetGame();
 });
 
+document.getElementById('perfectionistModeButton').addEventListener('click', function() {
+  perfectionistMode = !perfectionistMode; // Alternar o modo perfeccionista
+  // Atualize o texto do botão com base no status do modo perfeccionista
+  this.textContent = perfectionistMode ? '⬤' : '〇';
+});
+
+
 let isCheckingWord = false; // Variável para evitar chamadas repetidas da função checkWord()
 
 function checkWord() {
@@ -240,6 +253,10 @@ function checkWord() {
       } else {
         // Letra errada, defina a cor para vermelho
         letterSpan.style.color = "red";
+        // Se o modo perfeccionista estiver ativado e a palavra estiver errada, terminar o jogo
+        if (perfectionistMode) {
+          endGame();
+        }
       }
 
       wordDisplay.appendChild(letterSpan); // Adiciona a letra colorida à exibição
@@ -392,4 +409,21 @@ document.getElementById("showLeaderboardButton").addEventListener("click", showL
 
 // Event listener para o botão de fechar o popup do leaderboard
 document.getElementById("closeLeaderboard").addEventListener("click", hideLeaderboardPopup);
+
+// Aguarde o carregamento completo do DOM antes de atribuir os eventos
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtenha o botão pelo ID
+  const perfectionistModeButton = document.getElementById('perfectionistModeButton');
+
+  // Obtenha todos os elementos com a classe .blocotexto
+  const blocotextos = document.getElementsByClassName('blocotexto');
+
+  // Adicione um ouvinte de evento de clique ao botão
+  perfectionistModeButton.addEventListener('click', function () {
+    // Percorra todos os elementos com a classe .blocotexto e adicione a classe 'active' para mostrar a borda
+    for (let i = 0; i < blocotextos.length; i++) {
+      blocotextos[i].classList.toggle('active');
+    }
+  });
+});
 

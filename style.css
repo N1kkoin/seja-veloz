@@ -295,8 +295,8 @@ input:focus {
   border-radius: 5px;
   cursor: pointer;
   flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-  min-width: 50px; /* Largura mínima do botão */
-  max-width: 100px; /* Largura máxima do botão */
+  width: 50px; /* Largura mínima do botão */
+  max-width: 50px; /* Largura máxima do botão */
   margin: 0 auto; /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;

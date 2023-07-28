@@ -286,6 +286,22 @@ input:focus {
   font-size: 16px;
 }
 
+#perfectionistModeButton{
+  font-size: 18px;
+  padding: 5px 20px;
+  background-color: #ff0000;
+  color: white;  
+  border: 2px solid #ff0000;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 50px; /* Largura mínima do botão */
+  max-width: 100px; /* Largura máxima do botão */
+  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
 
 #showLeaderboardButton:hover {
   border: 2px solid #45a049;

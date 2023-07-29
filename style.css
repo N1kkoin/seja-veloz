@@ -17,18 +17,17 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
 }
 img{
   max-width: 300px;
   margin: 20px auto;
-  margin-top: 80px;
-  
+  margin-top: 35px;
 }
 
 .blocotexto{
@@ -64,7 +63,7 @@ h1 {
 }
 
 h2 {
-  color: #000;
+  color: #007bff;
   font-weight: 800;
   text-transform: uppercase;
   margin-top: 0px;
@@ -185,14 +184,13 @@ input:focus {
   height: 490px;
   width: 500px;
   overflow-y: auto;
-  border: 2px solid #45a049;
   }
   
   #closeButton {
     position: absolute;
     top: 17px;
     right: 15px;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
     padding: 5px 12px;
     background-color: white;
@@ -271,7 +269,7 @@ input:focus {
   position: absolute;
   top: 17px;
   right: 15px;
-  font-size: 20px;
+  font-size: 14px;
   cursor: pointer;
   padding: 5px 12px;
 }
@@ -347,24 +345,33 @@ input:focus {
   padding: 5px;
 }
 
-.leaderboard-row:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-.leaderboard-row:nth-child(even) {
-  background-color: #f1f1f1;
-}
-
-.coresdaoras:nth-child(1){
+.leaderboard-row:nth-child(1) .coresdaoras:nth-child(1){
+  color: #000 ;
   background-color: #ffe46a;
 }
 
+.leaderboard-row:nth-child(odd) {
+  background-color: #f0f2f6;
+}
+
+.leaderboard-row:nth-child(even) {
+  background-color: #e4e5ee;
+}
+
+.coresdaoras:nth-child(1){
+  background-color: white;
+  border-bottom: 2px solid #ffe46a;
+}
+
 .coresdaoras:nth-child(2){
-  background-color: #c2c2c2;
+  background-color: white;
+  border-bottom: 2px solid #e4e5ee;
+
 }
 
 .coresdaoras:nth-child(3){
-  background-color: #db9e6c;
+  background-color: white;
+  border-bottom: 2px solid #db9e6c;
 }
 
 
@@ -407,10 +414,15 @@ input:focus {
   flex: 3; 
 }
 
+.leaderboard-header:nth-child(1){
+  background-color: #f0f2f6;
+}
+
+
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid white; /* Cor da borda da tabela */
+  border: 2px solid witeh; /* Cor da borda da tabela */
 }
 
 @media (max-width: 600px) {
@@ -440,7 +452,8 @@ input:focus {
   .tutorial-box,
   .about-box {
     width: 80%;
-    font-size: 70%;
+    font-size: 70%; 
+    margin: 0; 
   }
 }
 
@@ -448,8 +461,8 @@ input:focus {
 /* Estilos para os botões */
 .buttonsts {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   z-index: 990;
 }
 
@@ -481,8 +494,8 @@ input:focus {
   padding: 20px;
   border-radius: 5px;
   z-index: 990;
-  margin: 20px;
-  margin-bottom: 80px;
+  margin: 10px;
+  margin-bottom: 60px;
 }
 
 .tutorial-box h2,
@@ -498,25 +511,8 @@ input:focus {
   line-height: 1.6;
 }
 
-.tutorial-box button,
-.about-box button {
-  font-size: 16px;
-  padding: 8px 16px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  background-color: #07bff0;
-  cursor: pointer;
-}
-
 .tutorial-box button:hover,
 .about-box button:hover {
-  background-color: #0056b3;
-}
-
-.tutorial-box button:active,
-.about-box button:active {
   background-color: #0056b3;
 }
 
@@ -532,7 +528,7 @@ input:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(8, 9, 35, 0.507); /* Aqui, definimos a cor preta com uma transparência de 50% */
+  background-color: rgba(8, 9, 35, 0.573); /* Aqui, definimos a cor preta com uma transparência de 50% */
   z-index: 995; /* Colocamos um índice z alto para garantir que o overlay fique por cima dos outros elementos */
   display: none; /* Começamos com o overlay oculto */
 }

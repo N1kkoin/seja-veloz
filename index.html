@@ -42,16 +42,17 @@
     </div>
 
     <div id="leaderboardPopup" class="popup">
-      <span class="closeButton" id="closeLeaderboard">&times;</span>
+      <span class="closeButton" id="closeLeaderboard"><i class="fa fa-times"></i></span>
       <h2>Leaderboard</h2>
       <div id="leaderboardList"></div>
     </div>
 
         <!-- Novo elemento para o overlay preto -->
     <div class="overlay"></div>
+    <div class="overlayinfo"></div>
 
     <div id="wordPopup">
-      <button id="closeButton" onclick="hidePopup()">&times;</button>
+      <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>
       <div id="wordList"></div>
     </div>
 
@@ -60,10 +61,12 @@
     <div class="tutorial-box" id="tutorialBox">
       <h2>Tutorial</h2>
       <p>Selecione a línguagem que deseja jogar e clique em iniciar</p>
+      <h3>Como jogar</h3>
+      <p>Não deixe o tempo acabar, está na hora de testar o quão agil na digitação você é! :)</p>
       <h3> <i class="fa fa-circle-o"></i> Modo normal</h3>
       <p>Cada palavra que você acertar, ganhe +3 segundos</p>
       <h3> <i class="fa fa-circle"></i> Modo Perfeccionista</h3>
-      <p>Não pode errar nenhuma letra dentro de uma palavra</p>
+      <p>Se achou o jogo facil, tente esse modo hehe</p>
 
     </div>
 
@@ -74,14 +77,15 @@
         <br>
         <b>Adicionado:</b> botão para terminar o jogo
         <br>
-        Quantidade de palavras atualmente:
+        <br>
+        <b>Quantidade de palavras atualmente:</b>
 
         <br>
         PT = 810
         <br>
         EN = 762
       </p>
-      <p><a class="link" target="_blank" href="https://www.nikkoin.art">Criado por Nikkon</a></p>
+      <p>Criado por<a class="link" target="_blank" href="https://www.nikkoin.art"> Nikkon</a></p>
     </div>
 
     <!-- Botões -->
@@ -94,9 +98,11 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
     <script>
-      const popup = document.getElementById('showLeaderboardButton');
       const overlay = document.querySelector('.overlay');
-      const closeButton = document.getElementById('closeLeaderboard');
+      const popup = document.getElementById('showLeaderboardButton');
+      const closeButtonLB = document.getElementById('closeLeaderboard');
+      const wordButton = document.getElementById('showWordsButton');
+      const closeButton = document.getElementById('closeButton');
     
       function showOverlay() {
         overlay.style.display = 'block';
@@ -107,6 +113,8 @@
       }
     
       popup.addEventListener('click', showOverlay);
+      closeButtonLB.addEventListener('click', hideOverlay);
+      wordButton.addEventListener('click', showOverlay);
       closeButton.addEventListener('click', hideOverlay);
     </script>
     <script>

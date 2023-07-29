@@ -12,21 +12,22 @@
 
 ::-webkit-scrollbar-track {
   background-color: white;
+  border-radius: 10px;
+
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
 }
 img{
   max-width: 300px;
   margin: 20px auto;
-  margin-top: 80px;
-  
+  margin-top: 35px;
 }
 
 .blocotexto{
@@ -62,7 +63,7 @@ h1 {
 }
 
 h2 {
-  color: #000;
+  color: #007bff;
   font-weight: 800;
   text-transform: uppercase;
   margin-top: 0px;
@@ -73,7 +74,6 @@ footer {
   margin: 20px auto;
   font-size: small;
   color: #d0d0db;
-
 }
 
 .segundoseponto{
@@ -173,24 +173,28 @@ input:focus {
   /* Estilos para o "popup" */
 #wordPopup {
   display: none;
-  position: relative;
-  margin: 20px auto;
-  background-color: #f4f7fd;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 20px;
-  padding-top: 0px;
+  background-color: white;
   border-radius: 5px;
-  width: 255px;
-  max-height: 350px;
+  z-index: 999;
+  height: 490px;
+  width: 500px;
   overflow-y: auto;
-  overflow-x: hidden;
-  font-family: 'Open Sans', sans-serif;
   }
   
   #closeButton {
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    display: none;
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 12px;
+    background-color: white;
+    border: none;
   }
   
   #wordList {
@@ -254,20 +258,18 @@ input:focus {
   transform: translate(-50%, -50%);
   padding: 20px;
   background-color: white;
-  border: 2px solid #007bff;
   border-radius: 5px;
   z-index: 999;
   height: 490px;
   width: 500px;
   overflow-y: auto;
-  
 }
 
 .closeButton {
   position: absolute;
   top: 17px;
   right: 15px;
-  font-size: 20px;
+  font-size: 14px;
   cursor: pointer;
   padding: 5px 12px;
 }
@@ -343,24 +345,33 @@ input:focus {
   padding: 5px;
 }
 
-.leaderboard-row:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-.leaderboard-row:nth-child(even) {
-  background-color: #f1f1f1;
-}
-
-.coresdaoras:nth-child(1){
+.leaderboard-row:nth-child(1) .coresdaoras:nth-child(1){
+  color: #000 ;
   background-color: #ffe46a;
 }
 
+.leaderboard-row:nth-child(odd) {
+  background-color: #f0f2f6;
+}
+
+.leaderboard-row:nth-child(even) {
+  background-color: #e4e5ee;
+}
+
+.coresdaoras:nth-child(1){
+  background-color: white;
+  border-bottom: 2px solid #ffe46a;
+}
+
 .coresdaoras:nth-child(2){
-  background-color: #c2c2c2;
+  background-color: white;
+  border-bottom: 2px solid #e4e5ee;
+
 }
 
 .coresdaoras:nth-child(3){
-  background-color: #db9e6c;
+  background-color: white;
+  border-bottom: 2px solid #db9e6c;
 }
 
 
@@ -403,15 +414,22 @@ input:focus {
   flex: 3; 
 }
 
+.leaderboard-header:nth-child(1){
+  background-color: #f0f2f6;
+}
+
+
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid white; /* Cor da borda da tabela */
+  border: 2px solid witeh; /* Cor da borda da tabela */
 }
 
 @media (max-width: 600px) {
   .popup {
-    width: 80%; /* Reduz a largura para ocupar 90% da largura da tela */
+    font-size: 70%;
+    height: 88vh;  
+    width: 80%;
   }
   img{
     margin-left: 20px;
@@ -427,23 +445,30 @@ input:focus {
     width: 87%;
   }
   #wordPopup {
+    font-size: 70%;
+    height: 88vh;  
     width: 80%;
-    
-    }
+  }
+  .tutorial-box,
+  .about-box {
+    width: 80%;
+    font-size: 70%; 
+    margin: 0; 
+  }
 }
 
 
 /* Estilos para os botões */
 .buttonsts {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
+  bottom: 10px;
+  right: 10px;
+  z-index: 990;
 }
 
 .buttonsts button {
-  font-size: 18px;
-  padding: 10px 20px;
+  font-size: 16px;
+  padding: 10px 15px;
   margin-left: 10px;
   border: none;
   border-radius: 5px;
@@ -464,13 +489,13 @@ input:focus {
   bottom: 0;
   right: 0;
   text-align: left;
-  width: 300px;
+  max-width: 300px;
   background-color: #f4f7fd;
   padding: 20px;
   border-radius: 5px;
-  z-index: 999;
-  margin: 20px;
-  margin-bottom: 80px;
+  z-index: 990;
+  margin: 10px;
+  margin-bottom: 60px;
 }
 
 .tutorial-box h2,
@@ -486,18 +511,6 @@ input:focus {
   line-height: 1.6;
 }
 
-.tutorial-box button,
-.about-box button {
-  font-size: 16px;
-  padding: 8px 16px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  background-color: #07bff0;
-  cursor: pointer;
-}
-
 .tutorial-box button:hover,
 .about-box button:hover {
   background-color: #0056b3;
@@ -507,4 +520,15 @@ input:focus {
   text-decoration: none;
   font-weight: 700;
   color: #29907F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(8, 9, 35, 0.573); /* Aqui, definimos a cor preta com uma transparência de 50% */
+  z-index: 995; /* Colocamos um índice z alto para garantir que o overlay fique por cima dos outros elementos */
+  display: none; /* Começamos com o overlay oculto */
 }

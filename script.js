@@ -102,7 +102,7 @@ function endGame() {
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
-  document.getElementById("startButton").textContent = "Restart";
+  document.getElementById("startButton").textContent = "Reiniciar";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
   document.getElementById("languageSelection").style.display = "inline-block";
   document.getElementById("showLeaderboardButton").style.display = "inline-block";
@@ -220,8 +220,8 @@ window.addEventListener("unload", () => {
 
 document.getElementById('perfectionistModeButton').addEventListener('click', function() {
   perfectionistMode = !perfectionistMode; // Alternar o modo perfeccionista
-  // Atualize o texto do botão com base no status do modo perfeccionista
-  this.textContent = perfectionistMode ? '⬤' : '〇';
+  // Atualize o conteúdo do botão com base no status do modo perfeccionista
+  this.innerHTML = perfectionistMode ? '<i class="fa fa-circle"></i>' : '<i class="fa fa-circle-o"></i>';
 });
 
 
@@ -453,3 +453,5 @@ function toggleAbout() {
     aboutBox.style.display = "block";
   }
 }
+
+

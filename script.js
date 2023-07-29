@@ -220,8 +220,8 @@ window.addEventListener("unload", () => {
 
 document.getElementById('perfectionistModeButton').addEventListener('click', function() {
   perfectionistMode = !perfectionistMode; // Alternar o modo perfeccionista
-  // Atualize o texto do botão com base no status do modo perfeccionista
-  this.textContent = perfectionistMode ? '⬤' : '〇';
+  // Atualize o conteúdo do botão com base no status do modo perfeccionista
+  this.innerHTML = perfectionistMode ? '<i class="fa fa-circle"></i>' : '<i class="fa fa-circle-o"></i>';
 });
 
 
@@ -453,3 +453,5 @@ function toggleAbout() {
     aboutBox.style.display = "block";
   }
 }
+
+

@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="botoes">
-      <button id="perfectionistModeButton">〇</button>     
+      <button id="perfectionistModeButton"><i class="fa fa-circle-o"></i></button>     
       <div id="languageSelection">
         <button onclick="setLanguage('pt')">PT</button>
         <button onclick="setLanguage('en-us')">EN</button>
@@ -47,8 +47,11 @@
       <div id="leaderboardList"></div>
     </div>
 
+        <!-- Novo elemento para o overlay preto -->
+    <div class="overlay"></div>
+
     <div id="wordPopup">
-      <button id="closeButton" onclick="hidePopup()"><i class="fa fa-times"></i></button>
+      <button id="closeButton" onclick="hidePopup()">&times;</button>
       <div id="wordList"></div>
     </div>
 
@@ -57,9 +60,9 @@
     <div class="tutorial-box" id="tutorialBox">
       <h2>Tutorial</h2>
       <p>Selecione a línguagem que deseja jogar e clique em iniciar</p>
-      <h3> 〇 Modo normal</h3>
+      <h3> <i class="fa fa-circle-o"></i> Modo normal</h3>
       <p>Cada palavra que você acertar, ganhe +3 segundos</p>
-      <h3> ⬤ Modo Perfeccionista</h3>
+      <h3> <i class="fa fa-circle"></i> Modo Perfeccionista</h3>
       <p>Não pode errar nenhuma letra dentro de uma palavra</p>
 
     </div>
@@ -67,7 +70,7 @@
     <div class="about-box" id="aboutBox">
       <h2>Sobre</h2>
       <h3>Ver 1.7</h3>
-      <p><b>Adicionado:</b> ⬤ Modo Perfeccionista
+      <p><b>Adicionado:</b> <i class="fa fa-circle"></i> Modo Perfeccionista
         <br>
         <b>Adicionado:</b> botão para terminar o jogo
         <br>
@@ -90,6 +93,22 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
+    <script>
+      const popup = document.getElementById('showLeaderboardButton');
+      const overlay = document.querySelector('.overlay');
+      const closeButton = document.getElementById('closeLeaderboard');
+    
+      function showOverlay() {
+        overlay.style.display = 'block';
+      }
+    
+      function hideOverlay() {
+        overlay.style.display = 'none';
+      }
+    
+      popup.addEventListener('click', showOverlay);
+      closeButton.addEventListener('click', hideOverlay);
+    </script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const animatedWord = document.querySelector(".animated-word");

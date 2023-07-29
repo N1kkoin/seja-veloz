@@ -102,7 +102,7 @@ function endGame() {
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
-  document.getElementById("startButton").textContent = "Restart";
+  document.getElementById("startButton").textContent = "Reiniciar";
   document.getElementById("startButton").style.display = "inline-block"; // Mostra o botão "Iniciar Jogo" novamente
   document.getElementById("languageSelection").style.display = "inline-block";
   document.getElementById("showLeaderboardButton").style.display = "inline-block";

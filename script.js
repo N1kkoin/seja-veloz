@@ -124,6 +124,7 @@ function endGame() {
     return;
   }
 
+  if (score > 1) {
   // Obtém o nome do jogador
   const playerName = prompt("Digite seu nome para salvar sua pontuação:");
   const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
@@ -166,6 +167,8 @@ function endGame() {
   leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
   }
 }
+}
+
 
 function resetGame() {
   clearInterval(timer);

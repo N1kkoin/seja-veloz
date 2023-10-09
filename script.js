@@ -15,19 +15,19 @@ let selectedLanguage = null; // Variável para armazenar a língua selecionada
 
 async function fetchWords() {
   try {
-      const response = await fetch(wordsFile);
-      const data = await response.json();
-      words = data.words;
+    const response = await fetch(wordsFile);
+    const data = await response.json();
+    words = data.words;
   } catch (error) {
-      console.error("Erro ao buscar as palavras:", error);
+    console.error("Erro ao buscar as palavras:", error);
   }
 }
 
 async function setLanguage(language) {
   if (language === 'pt') {
-      wordsFile = "palavras.json"; // Define o caminho para o arquivo de palavras em português
+    wordsFile = "palavras.json"; // Define o caminho para o arquivo de palavras em português
   } else if (language === 'en-us') {
-      wordsFile = "words.json"; // Define o caminho para o arquivo de palavras em inglês
+    wordsFile = "words.json"; // Define o caminho para o arquivo de palavras em inglês
   }
   selectedLanguage = language; // Store the selected language in the variable
   await fetchWords(); // Carrega o arquivo de palavras correspondente ao idioma escolhido
@@ -98,7 +98,7 @@ function updateTimer() {
 }
 
 function endGame() {
-  
+
   clearInterval(timer);
   isPlaying = false;
   document.getElementById("userInput").disabled = true; // Desabilita o campo de entrada
@@ -108,9 +108,9 @@ function endGame() {
   document.getElementById("showLeaderboardButton").style.display = "inline-block";
   document.getElementById("endGameButton").style.display = "none";
   document.getElementById("perfectionistModeButton").style.display = "inline-block";
-  
 
-  
+
+
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
 
@@ -123,50 +123,55 @@ function endGame() {
     // O tempo acabou, encerra o jogo
     return;
   }
-
-  if (score > 1) {
-  // Obtém o nome do jogador
-  const playerName = prompt("Digite seu nome para salvar sua pontuação:");
-  const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
-
-  // Extrai as horas, minutos e segundos do tempo total em segundos
-  const hours = Math.floor(playerTimeInSeconds / 3600);
-  const remainingSeconds = playerTimeInSeconds % 3600;
-  const minutes = Math.floor(remainingSeconds / 60);
-  const seconds = remainingSeconds % 60;
-
-  // Formatação com zeros à esquerda para garantir que os valores sejam mostrados com dois dígitos
-  const formattedHours = hours > 0 ? String(hours).padStart(2, '0') + 'h' : '';
-  const formattedMinutes = minutes > 0 ? String(minutes).padStart(2, '0') + 'm' : '';
-  const formattedSeconds = String(seconds).padStart(2, '0') + 's';
-
-  // Concatenação do resultado formatado
-  let playerTime = formattedHours + formattedMinutes + formattedSeconds;
-
-  // Remover o "0m" se não houver minutos
-  playerTime = playerTime.replace(/^0m/, '');
-
-  // Remover o "0h" se não houver horas
-  playerTime = playerTime.replace(/^0h/, '');
-
-  if (playerName) {
-    // Salva as informações do jogador no leaderboard
-    leaderboard.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
-
-    // Classifica o leaderboard em ordem decrescente de pontuação
-    leaderboard.sort((a, b) => b.score - a.score);
-
-    // Limita o leaderboard a, por exemplo, 10 melhores pontuações (opcional)
-    leaderboard = leaderboard.slice(0, 20);
-
-    // Exibe o leaderboard atualizado
-    displayLeaderboard();
-
-  // Update the data in the Firebase database
-  const leaderboardRef = firebase.database().ref("leaderboard");
-  leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage });
-  }
+  
+  if (score < 20) {
+    alert("Você não alcançou a pontuação mínima de 20. Por isso, seu score não aparecerá no leaderboard.");
 }
+  if (score >= 20) {
+    // Obtém o nome do jogador
+    const playerName = prompt("Digite seu nome para salvar sua pontuação:");
+    const playerTimeInSeconds = Math.floor((Date.now() - startTime) / 1000); // Calcula o tempo total que a partida durou em segundos inteiros
+
+    const dateTime = getFormattedDateTime(); // Adicione esta linha para obter a data e o horário atuais
+
+    // Extrai as horas, minutos e segundos do tempo total em segundos
+    const hours = Math.floor(playerTimeInSeconds / 3600);
+    const remainingSeconds = playerTimeInSeconds % 3600;
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+
+    // Formatação com zeros à esquerda para garantir que os valores sejam mostrados com dois dígitos
+    const formattedHours = hours > 0 ? String(hours).padStart(2, '0') + 'h' : '';
+    const formattedMinutes = minutes > 0 ? String(minutes).padStart(2, '0') + 'm' : '';
+    const formattedSeconds = String(seconds).padStart(2, '0') + 's';
+
+    // Concatenação do resultado formatado
+    let playerTime = formattedHours + formattedMinutes + formattedSeconds;
+
+    // Remover o "0m" se não houver minutos
+    playerTime = playerTime.replace(/^0m/, '');
+
+    // Remover o "0h" se não houver horas
+    playerTime = playerTime.replace(/^0h/, '');
+
+    if (playerName) {
+      // Salva as informações do jogador no leaderboard
+      leaderboard.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime }); // Adicione dateTime aqui
+
+      // Classifica o leaderboard em ordem decrescente de pontuação
+      leaderboard.sort((a, b) => b.score - a.score);
+
+      // Limita o leaderboard a, por exemplo, 10 melhores pontuações (opcional)
+      leaderboard = leaderboard.slice(0, 20);
+
+      // Exibe o leaderboard atualizado
+      displayLeaderboard();
+
+      // Update the data in the Firebase database
+      const leaderboardRef = firebase.database().ref("leaderboard");
+      leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime }); // Adicione dateTime aqui
+    }
+  }
 }
 
 
@@ -193,19 +198,19 @@ function showCorrectWords() {
   const closeButton = document.getElementById("closeButton"); // Adicionamos esta linha
 
   if (wordPopup.style.display === "block") {
-      // Se o pop-up já estiver aberto, fechamos ele
-      wordPopup.style.display = "none";
-      closeButton.style.display = "none"; // Escondemos o botão de fechar junto com o pop-up
+    // Se o pop-up já estiver aberto, fechamos ele
+    wordPopup.style.display = "none";
+    closeButton.style.display = "none"; // Escondemos o botão de fechar junto com o pop-up
   } else {
-      // Se o pop-up estiver fechado, exibimos as palavras corretas
-      let formattedList = "";
-      for (let i = 0; i < correctWords.length; i++) {
-          formattedList += `${i + 1}. ${correctWords[i]}<br>`;
-      }
+    // Se o pop-up estiver fechado, exibimos as palavras corretas
+    let formattedList = "";
+    for (let i = 0; i < correctWords.length; i++) {
+      formattedList += `${i + 1}. ${correctWords[i]}<br>`;
+    }
 
-      wordList.innerHTML = formattedList;
-      wordPopup.style.display = "block";
-      closeButton.style.display = "inline-block"; // Exibimos o botão de fechar quando abrimos o pop-up
+    wordList.innerHTML = formattedList;
+    wordPopup.style.display = "block";
+    closeButton.style.display = "inline-block"; // Exibimos o botão de fechar quando abrimos o pop-up
   }
 }
 
@@ -221,7 +226,7 @@ window.addEventListener("unload", () => {
   resetGame();
 });
 
-document.getElementById('perfectionistModeButton').addEventListener('click', function() {
+document.getElementById('perfectionistModeButton').addEventListener('click', function () {
   perfectionistMode = !perfectionistMode; // Alternar o modo perfeccionista
   // Atualize o conteúdo do botão com base no status do modo perfeccionista
   this.innerHTML = perfectionistMode ? '<i class="fa fa-circle"></i>' : '<i class="fa fa-circle-o"></i>';
@@ -323,16 +328,16 @@ let config = {
 };
 firebase.initializeApp(config);
 
-  // Function to display the leaderboard
-  function displayLeaderboard() {
-    const leaderboardList = document.getElementById("leaderboardList");
-    let leaderboardHTML = "";
-  
-    // Assuming your Firebase database structure has a "leaderboard" node with the given data
-    const leaderboardRef = firebase.database().ref("leaderboard");
-  
-    // Adicionar cabeçalho da tabela
-    leaderboardHTML += `
+// Function to display the leaderboard
+function displayLeaderboard() {
+  const leaderboardList = document.getElementById("leaderboardList");
+  let leaderboardHTML = "";
+
+  // Assuming your Firebase database structure has a "leaderboard" node with the given data
+  const leaderboardRef = firebase.database().ref("leaderboard");
+
+  // Adicionar cabeçalho da tabela
+  leaderboardHTML += `
       <table class="leaderboard-table">
         <thead>
           <tr class="leaderboard-row leaderboard-header">
@@ -346,21 +351,21 @@ firebase.initializeApp(config);
         </thead>
         <tbody>
     `;
-  
-    // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
-    leaderboardRef.once("value", (snapshot) => {
-      const leaderboard = snapshot.val();
-  
-      if (leaderboard) {
-        // Convert the leaderboard object to an array
-        const leaderboardArray = Object.keys(leaderboard).map((key) => leaderboard[key]);
-  
-        // Sort the leaderboard array by score in descending order
-        leaderboardArray.sort((a, b) => b.score - a.score);
-  
-        // Render the sorted data
-        leaderboardArray.forEach((entry, index) => {
-          leaderboardHTML += `
+
+  // Fetch the leaderboard data from Firebase and append it to the leaderboardHTML
+  leaderboardRef.once("value", (snapshot) => {
+    const leaderboard = snapshot.val();
+
+    if (leaderboard) {
+      // Convert the leaderboard object to an array
+      const leaderboardArray = Object.keys(leaderboard).map((key) => leaderboard[key]);
+
+      // Sort the leaderboard array by score in descending order
+      leaderboardArray.sort((a, b) => b.score - a.score);
+
+      // Render the sorted data
+      leaderboardArray.forEach((entry, index) => {
+        leaderboardHTML += `
             <tr class="leaderboard-row coresdaoras">
               <td class="leaderboard-estrela">${index + 1}</td>
               <td class="leaderboard-nome">${entry.name}</td>
@@ -369,13 +374,13 @@ firebase.initializeApp(config);
               <td class="leaderboard-score">${entry.score}</td>
             </tr>
           `;
-        });
-      }
-  
-      leaderboardList.innerHTML = leaderboardHTML;
-    });
-  }
-  
+      });
+    }
+
+    leaderboardList.innerHTML = leaderboardHTML;
+  });
+}
+
 
 // Call the function to display the leaderboard
 displayLeaderboard();
@@ -394,8 +399,6 @@ window.addEventListener("unload", () => {
 // Mostrar o leaderboard atualizado ao carregar a página
 displayLeaderboard();
 
-
-// ... (código existente)
 
 function showLeaderboardPopup() {
   const leaderboardPopup = document.getElementById("leaderboardPopup");
@@ -457,4 +460,9 @@ function toggleAbout() {
   }
 }
 
-
+function getFormattedDateTime() {
+  const current = new Date();
+  const date = current.toISOString().split('T')[0];  // pega a data no formato "YYYY-MM-DD"
+  const time = current.toTimeString().split(' ')[0];  // pega o horário no formato "HH:MM:SS"
+  return `${date} ${time}`;
+}

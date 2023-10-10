@@ -13,14 +13,20 @@ let timeLeft; // Reinicia o tempo restante para o valor original
 
 let selectedLanguage = null; // Variável para armazenar a língua selecionada
 
+let shortWords = [];
+let longWords = [];
+
 async function fetchWords() {
-  try {
-    const response = await fetch(wordsFile);
-    const data = await response.json();
-    words = data.words;
-  } catch (error) {
-    console.error("Erro ao buscar as palavras:", error);
-  }
+    try {
+        const response = await fetch(wordsFile);
+        const data = await response.json();
+        words = data.words;
+
+        shortWords = words.filter(word => word.length <= 6);
+        longWords = words.filter(word => word.length > 6);
+    } catch (error) {
+        console.error("Erro ao buscar as palavras:", error);
+    }
 }
 
 async function setLanguage(language) {
@@ -48,9 +54,13 @@ let isPlaying = false; // Variável para verificar se o jogo está em andamento
 let score = 0; // Pontuação do jogador
 
 function getRandomWord() {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex].toLowerCase(); // Converte a palavra para letra minúscula
+  const elapsedTime = (Date.now() - startTime) / 1000; // tempo decorrido em segundos
+  let pool = elapsedTime < 25 ? shortWords : longWords;
+  
+  const randomIndex = Math.floor(Math.random() * pool.length);
+  return pool[randomIndex].toLowerCase();
 }
+
 
 function displayWord() {
   const wordDisplay = document.getElementById("wordDisplay");
@@ -123,7 +133,7 @@ function endGame() {
     // O tempo acabou, encerra o jogo
     return;
   }
-  
+
   if (score < 20) {
     alert("Você não alcançou a pontuação mínima de 20. Por isso, seu score não aparecerá no leaderboard.");
 }

@@ -381,7 +381,7 @@ function displayLeaderboard() {
               <td class="leaderboard-nome">${entry.name}</td>
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
               <td class="leaderboard-tempo">${entry.time}</td>
-              <td class="leaderboard-score">${entry.score}</td>
+              <td class="leaderboard-score" title="Data e hora: ${entry.dateTime}">${entry.score}</td>
             </tr>
           `;
       });

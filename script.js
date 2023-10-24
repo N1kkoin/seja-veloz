@@ -17,16 +17,16 @@ let shortWords = [];
 let longWords = [];
 
 async function fetchWords() {
-    try {
-        const response = await fetch(wordsFile);
-        const data = await response.json();
-        words = data.words;
+  try {
+    const response = await fetch(wordsFile);
+    const data = await response.json();
+    words = data.words;
 
-        shortWords = words.filter(word => word.length <= 6);
-        longWords = words.filter(word => word.length > 6);
-    } catch (error) {
-        console.error("Erro ao buscar as palavras:", error);
-    }
+    shortWords = words.filter(word => word.length <= 6);
+    longWords = words.filter(word => word.length > 6);
+  } catch (error) {
+    console.error("Erro ao buscar as palavras:", error);
+  }
 }
 
 async function setLanguage(language) {
@@ -56,7 +56,7 @@ let score = 0; // Pontuação do jogador
 function getRandomWord() {
   const elapsedTime = (Date.now() - startTime) / 1000; // tempo decorrido em segundos
   let pool = elapsedTime < 25 ? shortWords : longWords;
-  
+
   const randomIndex = Math.floor(Math.random() * pool.length);
   return pool[randomIndex].toLowerCase();
 }
@@ -84,17 +84,26 @@ function startGame() {
     document.getElementById("perfectionistModeButton").style.display = "none";
     document.getElementById("endGameButton").style.display = "inline-block";
 
- // Limpar o conteúdo da caixa de texto de entrada
- document.getElementById("userInput").value = "";
+    // Seleciona todos os elementos com a classe "showbutton"
+    var elements = document.getElementsByClassName("ficacentro");
 
- // Exibe a primeira palavra na caixa de texto
- displayWord();
+    // Itera sobre os elementos e altera seu estilo
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = "none";
+    }
 
- document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
- document.getElementById("userInput").focus(); // Foca no campo de entrada
 
- initializeGame();
- timer = setInterval(updateTimer, 1000);
+    // Limpar o conteúdo da caixa de texto de entrada
+    document.getElementById("userInput").value = "";
+
+    // Exibe a primeira palavra na caixa de texto
+    displayWord();
+
+    document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
+    document.getElementById("userInput").focus(); // Foca no campo de entrada
+
+    initializeGame();
+    timer = setInterval(updateTimer, 1000);
   }
 }
 
@@ -121,7 +130,14 @@ function endGame() {
   document.getElementById("endGameButton").style.display = "none";
   document.getElementById("perfectionistModeButton").style.display = "inline-block";
 
+      // Seleciona todos os elementos com a classe "showbutton"
+      var elements = document.getElementsByClassName("ficacentro");
 
+      // Itera sobre os elementos e altera seu estilo
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+      }
+  
 
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
@@ -138,7 +154,7 @@ function endGame() {
 
   if (score < 20) {
     alert("Você não alcançou a pontuação mínima de 20. Por isso, seu score não aparecerá no leaderboard.");
-}
+  }
   if (score >= 20) {
     // Obtém o nome do jogador
     const playerName = prompt("Digite seu nome para salvar sua pontuação:");

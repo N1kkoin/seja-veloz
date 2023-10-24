@@ -532,3 +532,16 @@ input:focus {
   z-index: 995; /* Colocamos um índice z alto para garantir que o overlay fique por cima dos outros elementos */
   display: none; /* Começamos com o overlay oculto */
 }
+
+
+.ficacentro{
+  display: block;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.azul{
+  color: #007bff;
+  font-weight: 700;
+}

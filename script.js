@@ -84,17 +84,20 @@ function startGame() {
     document.getElementById("perfectionistModeButton").style.display = "none";
     document.getElementById("endGameButton").style.display = "inline-block";
 
-    // Seleciona todos os elementos com a classe "showbutton"
-    var elements = document.getElementsByClassName("ficacentro");
-
-    // Itera sobre os elementos e altera seu estilo
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
-    }
-
-
     // Limpar o conteúdo da caixa de texto de entrada
     document.getElementById("userInput").value = "";
+
+    // Seleciona todos os elementos com a classe "ficacentroend" e oculta cada um deles
+var elementsFicacentroend = document.getElementsByClassName("ficacentroend");
+for (var i = 0; i < elementsFicacentroend.length; i++) {
+  elementsFicacentroend[i].style.display = "none";
+}
+
+// Seleciona todos os elementos com a classe "ficacentro" e oculta cada um deles
+var elementsFicacentro = document.getElementsByClassName("ficacentro");
+for (var i = 0; i < elementsFicacentro.length; i++) {
+  elementsFicacentro[i].style.display = "none";
+}
 
     // Exibe a primeira palavra na caixa de texto
     displayWord();
@@ -130,17 +133,15 @@ function endGame() {
   document.getElementById("endGameButton").style.display = "none";
   document.getElementById("perfectionistModeButton").style.display = "inline-block";
 
-      // Seleciona todos os elementos com a classe "showbutton"
-      var elements = document.getElementsByClassName("ficacentro");
-
-      // Itera sobre os elementos e altera seu estilo
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
-      }
-  
-
   // Exibe o botão "Mostrar Palavras Corretas"
   document.getElementById("showWordsButton").style.display = "block";
+
+  
+    // Seleciona todos os elementos com a classe "ficacentroend" e oculta cada um deles
+var elementsFicacentroend = document.getElementsByClassName("ficacentroend");
+for (var i = 0; i < elementsFicacentroend.length; i++) {
+  elementsFicacentroend[i].style.display = "block";
+}
 
   // Verifica se o jogador ainda tem tempo restante com os bônus
   const timerDisplay = document.getElementById("timerDisplay");

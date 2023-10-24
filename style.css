@@ -545,3 +545,11 @@ input:focus {
   color: #007bff;
   font-weight: 700;
 }
+
+
+.ficacentroend{
+  display: none;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}

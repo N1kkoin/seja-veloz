@@ -84,15 +84,17 @@ function startGame() {
     document.getElementById("perfectionistModeButton").style.display = "none";
     document.getElementById("endGameButton").style.display = "inline-block";
 
-    // Limpar o conteúdo da caixa de texto de entrada
-    document.getElementById("userInput").value = "";
+ // Limpar o conteúdo da caixa de texto de entrada
+ document.getElementById("userInput").value = "";
 
-    // Exibe a primeira palavra na caixa de texto
-    displayWord();
+ // Exibe a primeira palavra na caixa de texto
+ displayWord();
 
-    document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
-    initializeGame();
-    timer = setInterval(updateTimer, 1000);
+ document.getElementById("userInput").disabled = false; // Habilita o campo de entrada
+ document.getElementById("userInput").focus(); // Foca no campo de entrada
+
+ initializeGame();
+ timer = setInterval(updateTimer, 1000);
   }
 }
 

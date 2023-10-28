@@ -99,6 +99,20 @@ for (var i = 0; i < elementsFicacentro.length; i++) {
   elementsFicacentro[i].style.display = "none";
 }
 
+document.getElementById("userInput").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    // Quando a tecla "Enter" for pressionada, exibe a mensagem de aviso
+    const enterWarning = document.getElementById("enterWarning");
+    enterWarning.style.display = "block";
+
+    // Oculta a mensagem de aviso após um período de tempo (por exemplo, 2 segundos)
+    setTimeout(() => {
+      enterWarning.style.display = "none";
+    }, 2000);
+  }
+});
+
+
     // Exibe a primeira palavra na caixa de texto
     displayWord();
 

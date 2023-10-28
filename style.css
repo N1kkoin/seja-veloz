@@ -553,3 +553,10 @@ input:focus {
   margin-bottom: 20px;
   margin-top: -10px;
 }
+
+.enter{
+  color: #ff0000;
+  display: none;
+  font-size: small;
+  margin-top: 5px;
+}

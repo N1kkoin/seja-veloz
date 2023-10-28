@@ -55,7 +55,18 @@ let score = 0; // Pontuação do jogador
 
 function getRandomWord() {
   const elapsedTime = (Date.now() - startTime) / 1000; // tempo decorrido em segundos
-  let pool = elapsedTime < 25 ? shortWords : longWords;
+  let pool;
+
+  if (elapsedTime <= 25) {
+    // Nos primeiros 25 segundos, inclua apenas palavras curtas
+    pool = shortWords;
+  } else if (elapsedTime < 1200) { // 20 minutos = 1200 segundos
+    // Após 25 segundos e antes de 20 minutos, inclua tanto palavras curtas quanto palavras longas
+    pool = shortWords.concat(longWords);
+  } else {
+    // Após 20 minutos, mostre apenas palavras longas
+    pool = longWords;
+  }
 
   const randomIndex = Math.floor(Math.random() * pool.length);
   return pool[randomIndex].toLowerCase();
@@ -98,6 +109,20 @@ var elementsFicacentro = document.getElementsByClassName("ficacentro");
 for (var i = 0; i < elementsFicacentro.length; i++) {
   elementsFicacentro[i].style.display = "none";
 }
+
+document.getElementById("userInput").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    // Quando a tecla "Enter" for pressionada, exibe a mensagem de aviso
+    const enterWarning = document.getElementById("enterWarning");
+    enterWarning.style.display = "block";
+
+    // Oculta a mensagem de aviso após um período de tempo (por exemplo, 2 segundos)
+    setTimeout(() => {
+      enterWarning.style.display = "none";
+    }, 2000);
+  }
+});
+
 
     // Exibe a primeira palavra na caixa de texto
     displayWord();
@@ -490,8 +515,21 @@ function toggleAbout() {
 }
 
 function getFormattedDateTime() {
-  const current = new Date();
-  const date = current.toISOString().split('T')[0];  // pega a data no formato "YYYY-MM-DD"
-  const time = current.toTimeString().split(' ')[0];  // pega o horário no formato "HH:MM:SS"
-  return `${date} ${time}`;
+  const options = {
+    timeZone: 'America/Sao_Paulo', // Defina o fuso horário para o Brasil
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  };
+
+  const formatter = new Intl.DateTimeFormat('pt-BR', options);
+  const formattedDateTime = formatter.format(new Date());
+
+  return formattedDateTime;
 }
+
+console.log(getFormattedDateTime()); // Exibe a data e hora formatadas do Brasil
+

@@ -55,7 +55,18 @@ let score = 0; // Pontuação do jogador
 
 function getRandomWord() {
   const elapsedTime = (Date.now() - startTime) / 1000; // tempo decorrido em segundos
-  let pool = elapsedTime < 25 ? shortWords : longWords;
+  let pool;
+
+  if (elapsedTime <= 25) {
+    // Nos primeiros 25 segundos, inclua apenas palavras curtas
+    pool = shortWords;
+  } else if (elapsedTime < 1200) { // 20 minutos = 1200 segundos
+    // Após 25 segundos e antes de 20 minutos, inclua tanto palavras curtas quanto palavras longas
+    pool = shortWords.concat(longWords);
+  } else {
+    // Após 20 minutos, mostre apenas palavras longas
+    pool = longWords;
+  }
 
   const randomIndex = Math.floor(Math.random() * pool.length);
   return pool[randomIndex].toLowerCase();

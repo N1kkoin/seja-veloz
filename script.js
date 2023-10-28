@@ -504,8 +504,21 @@ function toggleAbout() {
 }
 
 function getFormattedDateTime() {
-  const current = new Date();
-  const date = current.toISOString().split('T')[0];  // pega a data no formato "YYYY-MM-DD"
-  const time = current.toTimeString().split(' ')[0];  // pega o horário no formato "HH:MM:SS"
-  return `${date} ${time}`;
+  const options = {
+    timeZone: 'America/Sao_Paulo', // Defina o fuso horário para o Brasil
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  };
+
+  const formatter = new Intl.DateTimeFormat('pt-BR', options);
+  const formattedDateTime = formatter.format(new Date());
+
+  return formattedDateTime;
 }
+
+console.log(getFormattedDateTime()); // Exibe a data e hora formatadas do Brasil
+

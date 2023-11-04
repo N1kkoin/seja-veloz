@@ -630,3 +630,55 @@ input:focus {
   font-size: small;
   margin-top: 5px;
 }
+
+
+/* HOVER MELHOR DATA-TOOLTIP ------------------------------------------------------------------------------------------ */
+
+/* Adicione este estilo no seu arquivo CSS */
+.leaderboard-modo {
+  position: relative;
+}
+
+.leaderboard-modo::before {
+  content: attr(data-tooltip); /* Usando attr(data-tooltip) */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0; /* Inicialmente, o tooltip está oculto */
+  pointer-events: none; /* O tooltip não interfere com cliques */
+  transition: opacity 0.3s; /* Adiciona uma transição suave de fade-in/fade-out */
+}
+
+.leaderboard-modo:hover::before {
+  opacity: 1; /* Quando houver hover, mostra o tooltip */
+}
+
+.leaderboard-score {
+  position: relative;
+}
+
+.leaderboard-score::before {
+  content: attr(data-tooltip); /* Usando attr(data-tooltip) */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-85%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0; /* Inicialmente, o tooltip está oculto */
+  pointer-events: none; /* O tooltip não interfere com cliques */
+  transition: opacity 0.3s; /* Adiciona uma transição suave de fade-in/fade-out */
+}
+
+.leaderboard-score:hover::before {
+  opacity: 1; /* Quando houver hover, mostra o tooltip */
+}

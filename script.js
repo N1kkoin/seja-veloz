@@ -427,8 +427,7 @@ function displayLeaderboard() {
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
               <td class="leaderboard-tempo">${entry.time}</td>
               <td class="leaderboard-score" title="Data e hora: ${entry.dateTime}">${entry.score}</td>
-              <td class="leaderboard-modo">${entry.perfectionistMode ? "Perfeccionista" : "Normal"}</td> <!-- Exibir o modo -->
-
+              <td class="leaderboard-modo">${entry.perfectionistMode ? "<i class='fa fa-circle'></i>" : "<i class='fa fa-circle-o'>"}</td> 
             </tr>
           `;
       });

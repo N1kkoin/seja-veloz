@@ -13,40 +13,53 @@
 
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-23BZZMMJMP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-23BZZMMJMP');
+</script>
+
 <body>
-  <img src="logo_seja_veloz.svg"></img>
-  <span class="ficacentro">Escolha <span class="azul">PT</span> ou <span class="azul">EN</span> e Inicie o jogo</span>
-  <span class="ficacentroend">Troque a língua ou apenas <span class="azul">reinicie</span></span>
-  <div class="blocotexto">
-    <p id="wordDisplay">
-      <a style="word-break: keep-all;">
-        Será que você conhece a língua
-        <span class="animated-word">portuguesa?</span>
-        <span class="hidden-word">inglesa?</span>
-    </p>
-    </a>
-    <input type="text" id="userInput" autocomplete="off" spellcheck="false" placeholder="Digite a palavra..." disabled>
-    <div id="enterWarning" class="enter">Não aperte Enter</div>
+  <div class="tela">
+    <img src="logo_seja_veloz.svg"></img>
+    <span class="ficacentro">Escolha <span class="azul">PT</span> ou <span class="azul">EN</span> e Inicie o jogo</span>
+    <span class="ficacentroend">Troque a língua ou apenas <span class="azul">reinicie</span></span>
+    <div class="blocotexto">
+      <p id="wordDisplay">
+        <a style="word-break: keep-all;">
+          Será que você conhece a língua
+          <span class="animated-word">portuguesa?</span>
+          <span class="hidden-word">inglesa?</span>
+      </p>
+      </a>
+      <input type="text" id="userInput" autocomplete="off" spellcheck="false" placeholder="Digite a palavra..."
+        disabled>
+      <div id="enterWarning" class="enter">Não aperte Enter</div>
 
-    <div class="segundoseponto">
-      <p><i class="fa fa-clock-o"></i> <span id="timerDisplay">15</span> s</p>
-      <p><i class="fa fa-check"></i> <span id="score">0</span></p>
+      <div class="segundoseponto">
+        <p><i class="fa fa-clock-o"></i> <span id="timerDisplay">15</span> s</p>
+        <p><i class="fa fa-check"></i> <span id="score">0</span></p>
+      </div>
     </div>
-  </div>
-  <div class="botoes">
-    <button id="perfectionistModeButton"><i class="fa fa-circle-o"></i></button>
-    <div id="languageSelection">
-      <button onclick="setLanguage('pt')">PT</button>
-      <button onclick="setLanguage('en-us')">EN</button>
+    <div class="botoes">
+      <button id="perfectionistModeButton"><i class="fa fa-circle-o"></i></button>
+      <div id="languageSelection">
+        <button onclick="setLanguage('pt')">PT</button>
+        <button onclick="setLanguage('en-us')">EN</button>
+      </div>
+      <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
+      <!-- Adicione este botão onde você deseja exibir o popup do leaderboard -->
+      <button id="showLeaderboardButton"><i class="fa fa-trophy" aria-hidden="true"></i> Leaderboard</button>
+      <button id="endGameButton" onclick="endGame()" style="display: none;">Encerrar o jogo</button>
+      <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;"><i class="fa fa-check"></i>
+        Palavras</button>
     </div>
-    <button id="startButton" onclick="startGame()" disabled>Iniciar Jogo</button>
-    <!-- Adicione este botão onde você deseja exibir o popup do leaderboard -->
-    <button id="showLeaderboardButton"><i class="fa fa-trophy" aria-hidden="true"></i> Leaderboard</button>
-    <button id="endGameButton" onclick="endGame()" style="display: none;">Encerrar o jogo</button>
-    <button id="showWordsButton" onclick="showCorrectWords()" style="display: none;"><i class="fa fa-check"></i>
-      Palavras</button>
+    <footer>Ver 1.7.8 | Seja Veloz</footer>
   </div>
-
   <div id="leaderboardPopup" class="popup">
     <span class="closeButton" id="closeLeaderboard"><i class="fa fa-times"></i></span>
     <h2>Leaderboard</h2>
@@ -62,7 +75,7 @@
     <div id="wordList"></div>
   </div>
 
-  <footer>Ver 1.7.7 | Seja Veloz</footer>
+
 
   <div class="tutorial-box" id="tutorialBox">
     <h2>Tutorial</h2>
@@ -77,7 +90,7 @@
 
   <div class="about-box" id="aboutBox">
     <h2>Sobre</h2>
-    <h3>Ver 1.7.7</h3>
+    <h3>Ver 1.7.8</h3>
     <p>
       <b>Mecânica:</b> <br>
       Palavras longas a partir dos 25sec

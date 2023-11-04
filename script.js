@@ -223,9 +223,10 @@ for (var i = 0; i < elementsFicacentroend.length; i++) {
 
       // Update the data in the Firebase database
       const leaderboardRef = firebase.database().ref("leaderboard");
-      leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime }); // Adicione dateTime aqui
+      leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime, perfectionistMode: perfectionistMode }); // Adicione dateTime aqui
     }
   }
+
 }
 
 
@@ -398,9 +399,9 @@ function displayLeaderboard() {
             <th class="leaderboard-estrela"><i class="fa fa-star"></i></th>
             <th class="leaderboard-nome">Nome</th>
             <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
-            <!-- New column for the language -->
             <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
             <th class="leaderboard-score"><i class="fa fa-check"></i></th>
+            <th class="leaderboard-modo">Modo</th>
           </tr>
         </thead>
         <tbody>
@@ -426,6 +427,8 @@ function displayLeaderboard() {
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
               <td class="leaderboard-tempo">${entry.time}</td>
               <td class="leaderboard-score" title="Data e hora: ${entry.dateTime}">${entry.score}</td>
+              <td class="leaderboard-modo">${entry.perfectionistMode ? "Perfeccionista" : "Normal"}</td> <!-- Exibir o modo -->
+
             </tr>
           `;
       });

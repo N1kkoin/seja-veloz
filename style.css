@@ -301,7 +301,7 @@ input:focus {
   border-radius: 5px;
   z-index: 999;
   height: 500px;
-  width: 500px;
+  width: 80%;
   overflow-y: auto;
 }
 

@@ -331,7 +331,7 @@ input:focus {
   /* O botão irá ocupar o espaço disponível na linha */
   min-width: 100px;
   /* Largura mínima do botão */
-  max-width: 300px;
+  max-width: 330px;
   /* Largura máxima do botão */
   margin: 0 auto;
   /* Centralizar horizontalmente no contêiner */

@@ -19,47 +19,57 @@
 body {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  background-color: white;
   margin: 0;
   padding: 0;
   overflow-y: auto;
-}
-img{
-  max-width: 300px;
-  margin: 20px auto;
-  margin-top: 35px;
+  background-color: white;
+
 }
 
-.blocotexto{
-  background-color: #f4f7fd;
-  max-width: 300px;
-  padding: 10px;
+.tela {
+  max-width: 400px;
   margin: 0 auto;
-  border-radius: 10px;
-  border: 2px solid white; 
-  word-break: break-all;
+  padding-bottom: 50px;
+  padding-top: 30px;
+}
 
+img {
+  max-width: 340px;
+  margin: 20px auto;
+  margin-top: 20px;
+}
+
+.blocotexto {
+  background-color: #f4f7fd;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+  word-break: break-all;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /* Estilize a borda para o elemento .blocotexto quando estiver ativo */
 .blocotexto.active {
-  border: 2px solid #ff0000; /* Escolha a cor e a espessura da borda como desejar */
+  border: 2px solid #ff0000;
+  /* Escolha a cor e a espessura da borda como desejar */
 }
 
-.botoes{
+.botoes {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Espaçamento entre os botões */
-  max-width: 300px;
+  gap: 10px;
+  /* Espaçamento entre os botões */
+  max-width: 330px;
   justify-content: center;
   margin: 0 auto;
   margin-top: 20px;
 }
 
 h1 {
-    color: #000;
-    font-weight: 800;
-    text-transform: uppercase;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -76,101 +86,114 @@ footer {
   color: #d0d0db;
 }
 
-.segundoseponto{
+.segundoseponto {
   display: flex;
   justify-content: center;
 }
 
 #wordDisplay {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-    user-select: none;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  user-select: none;
 }
 
 #userInput {
-    font-size: 18px;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #userInput::placeholder {
-  color: #21335881; 
+  color: #21335881;
 }
-#userInput:disabled{
+
+#userInput:disabled {
   background-color: #26427e21;
 }
 
 p {
-    margin: 10px;
+  margin: 10px;
 }
 
 #timerDisplay {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
 }
 
 #score {
-    font-size: 18px;
-    font-weight: bold;
-    color: #007bff; /* Cor azul para destacar a pontuação */
+  font-size: 18px;
+  font-weight: bold;
+  color: #13b646;
+  /* Cor azul para destacar a pontuação */
 }
 
 #startButton {
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-    min-width: 100px; /* Largura mínima do botão */
-    max-width: 300px; /* Largura máxima do botão */
-    margin: 0 auto; /* Centralizar horizontalmente no contêiner */
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px;
+  /* Largura mínima do botão */
+  max-width: 300px;
+  /* Largura máxima do botão */
+  margin: 0 auto;
+  /* Centralizar horizontalmente no contêiner */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 #startButton:hover {
-    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+  background-color: #0056b3;
+  /* Cor mais escura ao passar o mouse */
 }
 
-#startButton:disabled{
+#startButton:disabled {
   background-color: #92c6ff;
 }
 
 input:focus {
-    outline: none; /* Remover a borda de foco do campo de entrada */
+  outline: none;
+  /* Remover a borda de foco do campo de entrada */
 }
 
 /* Estilos para o botão "Mostrar Palavras Corretas" */
 #showWordsButton {
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: #45a049; /* Cor de fundo mais escura ao passar o mouse */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-    min-width: 100px; /* Largura mínima do botão */
-    max-width: 300px; /* Largura máxima do botão */
-    margin: 0 auto; /* Centralizar horizontalmente no contêiner */
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-  }
-  
-  #showWordsButton:hover {
-    background-color: #237049;
-  }
-  
-  /* Estilos para o "popup" */
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #13b646;
+  /* Cor de fundo mais escura ao passar o mouse */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px;
+  /* Largura mínima do botão */
+  max-width: 300px;
+  /* Largura máxima do botão */
+  margin: 0 auto;
+  /* Centralizar horizontalmente no contêiner */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+#showWordsButton:hover {
+  background-color: #237049;
+}
+
+/* Estilos para o "popup" */
 #wordPopup {
   display: none;
   position: fixed;
@@ -184,69 +207,86 @@ input:focus {
   height: 490px;
   width: 500px;
   overflow-y: auto;
-  }
-  
-  #closeButton {
-    position: absolute;
-    top: 17px;
-    right: 15px;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 5px 12px;
-    background-color: white;
-    border: none;
-  }
-  
-  #wordList {
-    text-align: left;
+}
+
+#closeButton {
+  position: absolute;
+  top: 17px;
+  right: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 12px;
+  background-color: white;
+  border: none;
+}
+
+#wordList {
+  text-align: left;
+}
+
+/* Estilo para cada palavra na lista */
+#wordList span {
+  display: block;
+}
+
+/* Estilos para o elemento "+3" */
+.bonus {
+  position: fixed;
+  top: 280px;
+  left: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+  z-index: 9999;
+  animation: fade-in-and-move-up 1s ease-out;
+  animation-fill-mode: forwards;
+  /* Mantém o estado final da animação */
+}
+
+@keyframes fade-in-and-move-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 
-  /* Estilo para cada palavra na lista */
-  #wordList span {
-    display: block;
-  }
-  /* Estilos para o elemento "+3" */
-  .bonus {
-    position: fixed;
-    top: 280px;
-    left: 50%;
-    font-size: 24px;
-    font-weight: bold;
-    color: green;
-    z-index: 9999;
-    animation: fade-in-and-move-up 1s ease-out;
-    animation-fill-mode: forwards; /* Mantém o estado final da animação */
-  }
-  
-  @keyframes fade-in-and-move-up {
-    0% { opacity: 0; transform: translate(-50%, -50%); }
-    50% { opacity: 1; transform: translate(-50%, -50%); }
-    100% { opacity: 0; transform: translate(-50%, -70%); } /* Move 20% para cima (ajuste o valor conforme necessário) */
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 
-  #languageSelection button{
-    border: 0;
-    color: white;
-    font-size: 18px;
-    padding: 10px;
-    background-color: #007bff; /* Cor de fundo mais escura ao passar o mouse */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%);
   }
 
-  #languageSelection button:hover{
-    background-color: #0056b3;
-  }
+  /* Move 20% para cima (ajuste o valor conforme necessário) */
+}
 
-  .hidden-word {
-    display: none;
-  } 
+#languageSelection button {
+  border: 0;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #007bff;
+  /* Cor de fundo mais escura ao passar o mouse */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#languageSelection button:hover {
+  background-color: #0056b3;
+}
+
+.hidden-word {
+  display: none;
+}
 
 
 /* Estilos para o popup do leaderboard */
@@ -283,46 +323,58 @@ input:focus {
   font-size: 18px;
   padding: 5px 20px;
   background-color: white;
-  color: #000;  
+  color: #000;
   border: 2px solid #007bff;
   border-radius: 5px;
   cursor: pointer;
-  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-  min-width: 100px; /* Largura mínima do botão */
-  max-width: 300px; /* Largura máxima do botão */
-  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px;
+  /* Largura mínima do botão */
+  max-width: 300px;
+  /* Largura máxima do botão */
+  margin: 0 auto;
+  /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
 
-#perfectionistModeButton{
+#perfectionistModeButton {
   font-size: 18px;
   padding: 5px;
   background-color: #ff0000;
-  color: white;  
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-  min-width: 20px; /* Largura mínima do botão */
-  max-width: 30px; /* Largura máxima do botão */
-  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 20px;
+  /* Largura mínima do botão */
+  max-width: 30px;
+  /* Largura máxima do botão */
+  margin: 0 auto;
+  /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
 
-#endGameButton{
+#endGameButton {
   font-size: 18px;
   padding: 5px 20px;
   background-color: #007bff;
   border: none;
-  color: white;  
+  color: white;
   border-radius: 5px;
   cursor: pointer;
-  flex: 1; /* O botão irá ocupar o espaço disponível na linha */
-  min-width: 100px; /* Largura mínima do botão */
-  max-width: 300px; /* Largura máxima do botão */
-  margin: 0 auto; /* Centralizar horizontalmente no contêiner */
+  flex: 1;
+  /* O botão irá ocupar o espaço disponível na linha */
+  min-width: 100px;
+  /* Largura mínima do botão */
+  max-width: 300px;
+  /* Largura máxima do botão */
+  margin: 0 auto;
+  /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
@@ -337,7 +389,7 @@ input:focus {
 
 /* Estilos para a tabela de classificação */
 #leaderboardList {
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 /* Estilos para as células da tabela de classificação */
@@ -345,8 +397,8 @@ input:focus {
   padding: 5px;
 }
 
-.leaderboard-row:nth-child(1) .coresdaoras:nth-child(1){
-  color: #000 ;
+.leaderboard-row:nth-child(1) .coresdaoras:nth-child(1) {
+  color: #000;
   background-color: #ffe46a;
 }
 
@@ -358,20 +410,32 @@ input:focus {
   background-color: #e4e5ee;
 }
 
-.coresdaoras:nth-child(1){
+.coresdaoras:nth-child(1) {
   background-color: white;
   border-bottom: 2px solid #ffe46a;
 }
 
-.coresdaoras:nth-child(2){
+.coresdaoras:nth-child(2) {
   background-color: white;
-  border-bottom: 2px solid #e4e5ee;
+  border-bottom: 2px solid #c3c9f2;
 
 }
 
-.coresdaoras:nth-child(3){
+.coresdaoras:nth-child(3) {
   background-color: white;
   border-bottom: 2px solid #db9e6c;
+}
+
+.leaderboard-row.coresdaoras:nth-child(1) .leaderboard-score{
+  background-color: #ffe46a;
+}
+
+.leaderboard-row.coresdaoras:nth-child(2) .leaderboard-score{
+  background-color: #c3c9f2;
+}
+
+.leaderboard-row.coresdaoras:nth-child(3) .leaderboard-score{
+  background-color: #db9e6c;
 }
 
 
@@ -379,42 +443,50 @@ input:focus {
 .leaderboard-estrela,
 .leaderboard-nome,
 .leaderboard-score {
-  flex: 1; /* Equal width for all columns */
+  flex: 1;
+  /* Equal width for all columns */
 }
 
 .leaderboard-header {
   font-weight: bold;
 }
 
-.leaderboard-estrela{
+.leaderboard-estrela {
   text-align: center;
   padding: 5px 10px;
 }
 
-.leaderboard-nome{
+.leaderboard-nome {
   text-align: left;
   padding: 5px 10px;
-  flex: 6; 
+  flex: 6;
 }
 
-.leaderboard-score{
+.leaderboard-score {
   text-align: center;
   padding: 5px 10px;
+  font-weight: 700;
 }
 
-.leaderboard-tempo{
+
+.leaderboard-score i{
+  color: #13b646;
+
+}
+
+.leaderboard-tempo {
   text-align: center;
   padding: 5px 10px;
-  flex: 3; 
+  flex: 3;
 }
 
-.leaderboard-linguagem{
+.leaderboard-linguagem {
   text-align: center;
-  padding: 5px 10px; 
-  flex: 3; 
+  padding: 5px 10px;
+  flex: 3;
 }
 
-.leaderboard-header:nth-child(1){
+.leaderboard-header:nth-child(1) {
   background-color: #f0f2f6;
 }
 
@@ -422,38 +494,35 @@ input:focus {
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid witeh; /* Cor da borda da tabela */
+  border: 2px solid witeh;
+  /* Cor da borda da tabela */
 }
 
 @media (max-width: 600px) {
   .popup {
     font-size: 70%;
-    height: 88vh;  
+    height: 88vh;
     width: 80%;
   }
-  img{
+
+  img {
     margin-left: 20px;
     margin-right: 20px;
   }
-  #startButton { 
+
+  #startButton {
     flex: auto;
   }
-  #showLeaderboardButton { 
+
+  #showLeaderboardButton {
     flex: auto;
   }
-  .blocotexto{
-    width: 87%;
-  }
-  #wordPopup {
-    font-size: 70%;
-    height: 88vh;  
-    width: 80%;
-  }
+
   .tutorial-box,
   .about-box {
     width: 80%;
-    font-size: 70%; 
-    margin: 0; 
+    font-size: 70%;
+    margin: 0;
   }
 }
 
@@ -516,7 +585,7 @@ input:focus {
   background-color: #0056b3;
 }
 
-.link{
+.link {
   text-decoration: none;
   font-weight: 700;
   color: #29907F;
@@ -528,33 +597,36 @@ input:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(8, 9, 35, 0.573); /* Aqui, definimos a cor preta com uma transparência de 50% */
-  z-index: 995; /* Colocamos um índice z alto para garantir que o overlay fique por cima dos outros elementos */
-  display: none; /* Começamos com o overlay oculto */
+  background-color: rgba(8, 9, 35, 0.573);
+  /* Aqui, definimos a cor preta com uma transparência de 50% */
+  z-index: 995;
+  /* Colocamos um índice z alto para garantir que o overlay fique por cima dos outros elementos */
+  display: none;
+  /* Começamos com o overlay oculto */
 }
 
 
-.ficacentro{
+.ficacentro {
   display: block;
   font-weight: 600;
   margin-bottom: 20px;
   margin-top: -10px;
 }
 
-.azul{
+.azul {
   color: #007bff;
   font-weight: 700;
 }
 
 
-.ficacentroend{
+.ficacentroend {
   display: none;
   font-weight: 600;
   margin-bottom: 20px;
   margin-top: -10px;
 }
 
-.enter{
+.enter {
   color: #ff0000;
   display: none;
   font-size: small;

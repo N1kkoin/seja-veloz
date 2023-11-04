@@ -300,8 +300,8 @@ input:focus {
   background-color: white;
   border-radius: 5px;
   z-index: 999;
-  height: 490px;
-  width: 500px;
+  height: 70%;
+  width: 80%;
   overflow-y: auto;
 }
 
@@ -328,11 +328,8 @@ input:focus {
   border-radius: 5px;
   cursor: pointer;
   flex: 1;
-  /* O botão irá ocupar o espaço disponível na linha */
   min-width: 100px;
-  /* Largura mínima do botão */
   max-width: 330px;
-  /* Largura máxima do botão */
   margin: 0 auto;
   /* Centralizar horizontalmente no contêiner */
   font-family: 'Open Sans', sans-serif;
@@ -500,9 +497,10 @@ input:focus {
 
 @media (max-width: 600px) {
   .popup {
-    font-size: 70%;
+    font-size: 68%;
     height: 88vh;
-    width: 80%;
+    width: 85%;
+    
   }
 
   img {
@@ -558,13 +556,15 @@ input:focus {
   bottom: 0;
   right: 0;
   text-align: left;
-  max-width: 300px;
+  max-width: 450px;
+  height: auto;
   background-color: #f4f7fd;
   padding: 20px;
   border-radius: 5px;
   z-index: 990;
   margin: 10px;
   margin-bottom: 60px;
+  border: 1px solid #007bff;
 }
 
 .tutorial-box h2,
@@ -574,10 +574,8 @@ input:focus {
   color: #007bff;
 }
 
-.tutorial-box p,
-.about-box p {
-  font-size: 14px;
-  line-height: 1.6;
+.tutorial-box p{
+  margin-top: -10px;
 }
 
 .tutorial-box button:hover,
@@ -632,3 +630,59 @@ input:focus {
   font-size: small;
   margin-top: 5px;
 }
+
+
+/* HOVER MELHOR DATA-TOOLTIP ------------------------------------------------------------------------------------------ */
+
+/* Adicione este estilo no seu arquivo CSS */
+.leaderboard-modo {
+  position: relative;
+}
+
+.leaderboard-modo::before {
+  content: attr(data-tooltip); /* Usando attr(data-tooltip) */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #000000;
+  font-weight: 600;
+  color: #333;
+  padding: 6px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0; /* Inicialmente, o tooltip está oculto */
+  pointer-events: none; /* O tooltip não interfere com cliques */
+}
+
+.leaderboard-modo:hover::before {
+  opacity: 1; /* Quando houver hover, mostra o tooltip */
+}
+
+.leaderboard-score {
+  position: relative;
+}
+
+.leaderboard-score::before {
+  content: attr(data-tooltip); /* Usando attr(data-tooltip) */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-85%);
+  background-color: white;
+  border: 1px solid #000000;
+  font-weight: 600;
+  color: #333;
+  padding: 6px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0; /* Inicialmente, o tooltip está oculto */
+  pointer-events: none; /* O tooltip não interfere com cliques */
+}
+
+.leaderboard-score:hover::before {
+  opacity: 1; /* Quando houver hover, mostra o tooltip */
+}
+
+

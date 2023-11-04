@@ -223,9 +223,10 @@ for (var i = 0; i < elementsFicacentroend.length; i++) {
 
       // Update the data in the Firebase database
       const leaderboardRef = firebase.database().ref("leaderboard");
-      leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime }); // Adicione dateTime aqui
+      leaderboardRef.push({ name: playerName, score: score, time: playerTime, language: selectedLanguage, dateTime: dateTime, perfectionistMode: perfectionistMode }); // Adicione dateTime aqui
     }
   }
+
 }
 
 
@@ -397,10 +398,10 @@ function displayLeaderboard() {
           <tr class="leaderboard-row leaderboard-header">
             <th class="leaderboard-estrela"><i class="fa fa-star"></i></th>
             <th class="leaderboard-nome">Nome</th>
+            <th class="leaderboard-modo" data-tooltip="Modo de jogo">Modo</th>
             <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
-            <!-- New column for the language -->
             <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
-            <th class="leaderboard-score"><i class="fa fa-check"></i></th>
+            <th class="leaderboard-score" data-tooltip="Pontuação"><i class="fa fa-check"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -423,9 +424,10 @@ function displayLeaderboard() {
             <tr class="leaderboard-row coresdaoras">
               <td class="leaderboard-estrela">${index + 1}</td>
               <td class="leaderboard-nome">${entry.name}</td>
+              <td class="leaderboard-modo" data-tooltip="${entry.perfectionistMode ? "Perfeccionista" : "Normal"}">${entry.perfectionistMode ? "<i class='fa fa-circle'></i>" : "<i class='fa fa-circle-o'>"}</td> 
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
               <td class="leaderboard-tempo">${entry.time}</td>
-              <td class="leaderboard-score" title="Data e hora: ${entry.dateTime}">${entry.score}</td>
+              <td class="leaderboard-score" data-tooltip="&#128197; ${entry.dateTime}">${entry.score}</td>
             </tr>
           `;
       });
@@ -532,4 +534,7 @@ function getFormattedDateTime() {
 }
 
 console.log(getFormattedDateTime()); // Exibe a data e hora formatadas do Brasil
+
+
+
 

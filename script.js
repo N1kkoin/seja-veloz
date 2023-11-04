@@ -398,11 +398,10 @@ function displayLeaderboard() {
           <tr class="leaderboard-row leaderboard-header">
             <th class="leaderboard-estrela"><i class="fa fa-star"></i></th>
             <th class="leaderboard-nome">Nome</th>
-            <th class="leaderboard-modo">Modo</th>
-
+            <th class="leaderboard-modo" data-tooltip="Modo de jogo">Modo</th>
             <th class="leaderboard-linguagem"><i class="fa fa-flag" aria-hidden="true"></i></th>
             <th class="leaderboard-tempo"><i class="fa fa-clock-o"></i></th>
-            <th class="leaderboard-score"><i class="fa fa-check"></i></th>
+            <th class="leaderboard-score" data-tooltip="Pontuação"><i class="fa fa-check"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -428,7 +427,7 @@ function displayLeaderboard() {
               <td class="leaderboard-modo" data-tooltip="${entry.perfectionistMode ? "Perfeccionista" : "Normal"}">${entry.perfectionistMode ? "<i class='fa fa-circle'></i>" : "<i class='fa fa-circle-o'>"}</td> 
               <td class="leaderboard-linguagem">${entry.language === "pt" ? "PT" : "EN"}</td>
               <td class="leaderboard-tempo">${entry.time}</td>
-              <td class="leaderboard-score" data-tooltip="Data e hora: ${entry.dateTime}">${entry.score}</td>
+              <td class="leaderboard-score" data-tooltip="&#128197; ${entry.dateTime}">${entry.score}</td>
             </tr>
           `;
       });
